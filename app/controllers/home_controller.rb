@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-    def homepage
-    end
-    def dashboard
-    end
-    
+  def homepage; end
+
+  def dashboard; end
 end
