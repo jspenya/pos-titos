@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pos</title>
+    <title>POS Titos</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
@@ -12,15 +13,14 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= current_user.id %>
-      <%= button_to 'Log out', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= button_to 'Log in', new_user_session_path, method: :get%>
-      <%= button_to 'Sign up', new_user_registration_path, method: :get %>
-    <% end %>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <%= render "shared/flash" %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 pt-3">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
