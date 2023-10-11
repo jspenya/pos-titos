@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root 'home#homepage'
   get 'homepage', to: 'home#homepage'
   get 'dashboard', to: 'home#dashboard'
+  get '/homepage/:id', to: 'home#show', as: :show_product
+  
   # Defines the root path route ("/")
   # root "articles#index"
 end
