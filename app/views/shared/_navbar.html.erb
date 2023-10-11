@@ -1,0 +1,16 @@
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex">
+      <%= bootstrap_icon "robot", width: '2rem', height: '2rem', fill: "black" %>
+      <span class="ml-3 text-s font-bold">Point of Sales</span>
+    </a>
+    <div class="d-flex">
+      <% if user_signed_in? %>
+        <%= button_to 'Log out', destroy_user_session_path, class: 'btn btn-dark', method: :delete %>
+      <% else %>
+        <%= button_to 'Log in', new_user_session_path, class: 'btn btn-dark', method: :get%>
+        <%= button_to 'Sign up', new_user_registration_path, class: 'btn btn-light ml-3', method: :get %>
+      <% end %>
+    </div>
+  </div>
+</nav>
