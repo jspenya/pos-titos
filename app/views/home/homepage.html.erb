@@ -1,9 +1,9 @@
-<div class = "main" style = "text-align: center; justify-content: center;">
+<div class = "main" style = "text-align: left; justify-content: center;">
 <h1>Category</h1>
     <% @category.each do |c| %>
     <div style= "font-size: 20px; ">
     <li> <%= link_to c.name, show_product_path(c) %> </li>
     <% end %>
     </div>
-
+    <%= button_to 'Create new Category', new_category_path, class: 'btn btn-dark', method: :get %>
 </div>
