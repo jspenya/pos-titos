@@ -1,0 +1,23 @@
+<h1><%= @category.name %></h1>
+
+<h6><%= @category.name %>'s Products:</h6>
+<ul>
+  <% @category.products.each do |product| %>
+    <li><%= product.name %> | <%= product.quantity %> | <%= product.price %></li>
+  <% end %>
+</ul>
+
+<h2>Add a product:</h2>
+<%= form_with model: [ @category, @category.products.build ] do |form| %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.label :quantity %>
+  <%= form.number_field :quantity %>
+
+  <%= form.label :price %>
+  <%= form.number_field :price %>
+
+
+  <%= form.button 'Add Product', class: 'btn btn-dark'%>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_with model: @category do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.button class: 'btn btn-dark' %>
+<% end %>

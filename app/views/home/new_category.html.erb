@@ -1,10 +1,17 @@
 <h1> Create new category </h1>
 
 <%= form_with model: @category do |form| %>
-<div>
-<%= form.label :name %>
-<%= form.text_field :name %>
-</div>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
 
-<%= form.button class: 'btn btn-dark' %>
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+
+  </div>
+
+  <%= form.submit, class: 'btn btn-dark' %>
 <% end %>
