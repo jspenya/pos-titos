@@ -1,0 +1,18 @@
+
+<%= form_with model: [ @category, @product ] do |form| %>
+    
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity %>
+  
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+
+    <%= form.submit 'Edit Product', class: 'btn btn-dark'%>
+    <%= link_to 'Destroy Product', [@category, @product], data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+      } %>
+  <% end %>

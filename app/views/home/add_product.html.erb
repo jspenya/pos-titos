@@ -10,7 +10,6 @@
     <%= form.label :price %>
     <%= form.number_field :price %>
 
-    <%= form.collection_select :category_id, Category.all, :id, :name %>
     
     <%= form.button 'Add Product', class: 'btn btn-dark'%>
 <% end %>

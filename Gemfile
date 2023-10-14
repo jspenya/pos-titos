@@ -78,4 +78,3 @@ end
 gem "bootstrap-icons-helper", "~> 2.0", ">= 2.0.1"
 gem "devise", "~> 4.9"
 
-gem "tailwindcss-rails", "~> 2.0"
