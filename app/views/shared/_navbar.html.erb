@@ -1,9 +1,9 @@
 <nav class="navbar bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand d-flex">
-      <%= bootstrap_icon "robot", width: '2rem', height: '2rem', fill: "black" %>
-      <span class="ml-3 text-s font-bold">Point of Sales</span>
-    </a>
+    <%= link_to root_path, class: 'navbar-brand d-flex' do %>
+      <%= bootstrap_icon "robot", width: '2rem', height: '2rem', fill: "black", style: 'margin-right: 8px;' %>
+      <strong>Point of Sales</strong>
+    <% end %>
     <div class="d-flex">
       <% if user_signed_in? %>
         <%= button_to 'Log out', destroy_user_session_path, class: 'btn btn-dark', method: :delete %>
