@@ -4,8 +4,9 @@ class ProductsController < ApplicationController
   def index
     @products = @category.products
   end
-  def show
-  end
+
+  def show; end
+
   def new
     @product = @category.products.build
   end
@@ -20,7 +21,7 @@ class ProductsController < ApplicationController
     @product = @category.products.build(product_params)
 
         respond_to do |format|
-         if @product.save  
+         if @product.save
             format.html { redirect_to category_path(@category), notice: 'Product was successfully created.' }
             format.json { render :show, status: :created, location: @product }
          else
@@ -30,10 +31,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @category = Category.find(params[:category_id])
-    @product = @category.products.find(params[:id])
-  end
+  def edit; end
 
   def update
     respond_to do |format|
@@ -54,7 +52,7 @@ class ProductsController < ApplicationController
     redirect_to category_path(@category), notice: 'Product was successfully destroyed.'
   end
 
- 
+
 
   private
     def set_product

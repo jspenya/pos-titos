@@ -33,6 +33,18 @@
   --space-xxxl: 3rem;    // 48px
   --space-xxxxl: 4rem;   // 64px
 
+  // Use em units for padding
+  --p-xxxs: 0.25em; // 4px
+  --p-xxs: 0.375em; // 6px
+  --p-xs: 0.5em;    // 8px
+  --p-s: 0.75em;    // 12px
+  --p-m: 1em;       // 16px
+  --p-l: 1.5em;     // 24px
+  --p-xl: 2em;      // 32px
+  --p-xxl: 2.5em;   // 40px
+  --p-xxxl: 3em;    // 48px
+  --p-xxxxl: 4em;   // 64px
+
   // Application colors
   --color-primary:          hsl(350, 67%, 50%);
   --color-primary-rotate:   hsl(10, 73%, 54%);

@@ -1,9 +1,9 @@
 <%= form_with model: @category do |form| %>
-  <div>
+  <div class="unit form">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
   <%= form.submit class: 'btn btn-dark' %>
- 
+
 <% end %>

@@ -1,11 +1,6 @@
-<h1><%= @category.name %></h1>
-<%= link_to "Edit Category", edit_category_path %>
+<%= link_to sanitize("&larr; Back to Categories"), categories_path %>
 
-<h6><%= @category.name %>'s Products:</h6>
-<ul>
-  <% @category.products.each do |product| %>
-    <li><%=product.name %> | <%= product.quantity %> | <%= product.price %> | <%= link_to 'Edit Product', edit_category_product_path(@category, product) %></li>
-  <% end %>
-</ul>
-<h2>Add a product:</h2>
-<%= render 'productform' %>
+<h2 class="page-title"><%= @category.name %>'s Products</h2>
+
+<%= render @products %>
+<%= link_to 'New Product', new_category_product_path(@category), class: 'btn btn-dark' %>

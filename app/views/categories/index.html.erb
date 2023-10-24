@@ -1,11 +1,5 @@
 <h1>Categories</h1>
 
-<% @categories.each do |category| %>
-  <h6>
-    <%= link_to category.name, category_path(category) %>
-    <%= link_to "Edit Category", edit_category_path(category) %>
-  </h6>
-
-<% end %>
+<%= render @categories %>
 
 <%= link_to 'New Category', new_category_path, class: 'btn btn-dark' %>
