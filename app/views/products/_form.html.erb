@@ -33,12 +33,9 @@
                       <span class="dropzone-msg-desc mb-3">Drop & Drag files (or click here) to upload an attachment</span>
                       <%= form.file_field :image, direct_upload: true, data: { dropzone_target: 'input' } %>
                       <% if form.object.image.attached? %>
-                        <div class="my-3 pb-3 border-b border-gray-100 grid grid-cols-1 md:grid-cols-3 items-center">
-                          <div>
-                            <svg class="icon__small flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
-                          </div>
-                          <div class="flex items-center">
+                        <div id="thumbnail-container" class="my-3 pb-3 border-b border-gray-100 grid grid-cols-1 md:grid-cols-3 items-center">
+                          <div class="d-flex items-center">
+                            <div><%= image_tag(form.object.image.variant(:thumb)) %></div>
                             <span class="text-xs"><%= form.object.image.blob&.filename.to_s %></span>
                           </div>
                         </div>
