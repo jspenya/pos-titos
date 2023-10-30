@@ -18,3 +18,15 @@
 
 // Layouts
 @import "layouts/header";
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
