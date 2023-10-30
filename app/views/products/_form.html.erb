@@ -1,52 +1,61 @@
-<div class="unit form">
-  <% if @product.new_record? %>
-    <%= form_with model: [ @category, @category.products.build ] do |form| %>
-      <div class="form__group">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "form__input", value: product&.name %>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="unit form">
+        <%= form_with(**product_form_opts(@category, product)) do |form| %>
+          <div class="form__group">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "form__input", value: product&.name %>
+          </div>
 
-      <div class="form__group">
-        <%= form.label :quantity %>
-        <%= form.number_field :quantity, class: "form__input", value: product&.quantity %>
-      </div>
+          <div class="form__group">
+            <%= form.label :quantity %>
+            <%= form.number_field :quantity, class: "form__input", value: product&.quantity %>
+          </div>
 
-      <div class="form__group">
-        <%= form.label :price %>
-        <%= form.number_field :price, value: number_to_currency(product&.price.to_f, delimiter: '', unit: ''), step: :any, class: "form__input" %>
-      </div>
+          <div class="form__group">
+            <%= form.label :price %>
+            <%= form.number_field :price, value: number_to_currency(product&.price.to_f, delimiter: '', unit: ''), step: :any, class: "form__input" %>
+          </div>
 
-      <div class="form__group mt-3">
-        <div>
-          <%= form.label :image, "Image" %>
-        </div>
-        <%= form.file_field :image %>
-      </div>
+          <div class="mt-3">
+            <dt>
+              <%= form.label :image, "Image" %>
+            </dt>
+            <div class="dropzone dropzone-default dz-clickable" data-controller="dropzone" data-dropzone-max-file-size-value="2" data-dropzone-max-files-value="5">
+              <dd class="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
+                <div class="d-flex max-w-lg justify-center rounded-md border-2 border-dashed border-gray-300 px-6 py-10 dropzone-msg dz-message needsclick cursor-pointer" data-dropzone-target="dropHere">
+                  <div class="space-y-1 text-center w-100">
+                    <svg class="mx-auto icon__small text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                      <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <div class="flex flex-col text-sm text-gray-600">
+                      <span class="dropzone-msg-desc mb-3">Drop & Drag files (or click here) to upload an attachment</span>
+                      <%= form.file_field :image, direct_upload: true, data: { dropzone_target: 'input' } %>
+                      <% if form.object.image.attached? %>
+                        <div class="my-3 pb-3 border-b border-gray-100 grid grid-cols-1 md:grid-cols-3 items-center">
+                          <div>
+                            <svg class="icon__small flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                          </div>
+                          <div class="flex items-center">
+                            <span class="text-xs"><%= form.object.image.blob&.filename.to_s %></span>
+                          </div>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </dd>
+              <%= render 'shared/custom_dropzone_preview' %>
+            </div>
+          </div>
 
-      <div class="form__group mt-3">
-        <%= form.button 'Submit', class: 'btn btn-dark'%>
+          <div class="form__group mt-4">
+            <%= form.button 'Submit', class: 'btn btn-dark w-100'%>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  <% else %>
-    <%= form_with model: @product, url: category_product_path(@category), method: :patch, local: true do |form| %>
-      <div class="form__group">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: "form__input", value: product&.name %>
-      </div>
-
-      <div class="form__group">
-        <%= form.label :quantity %>
-        <%= form.number_field :quantity, class: "form__input", value: product&.quantity %>
-      </div>
-
-      <div class="form__group">
-        <%= form.label :price %>
-        <%= form.number_field :price, value: number_to_currency(product&.price.to_f, delimiter: '', unit: ''), step: :any, class: "form__input" %>
-      </div>
-
-      <div class="form__group mt-3">
-        <%= form.button 'Submit', class: 'btn btn-dark'%>
-      </div>
-    <% end %>
-  <% end %>
+    </div>
+  </div>
 </div>
