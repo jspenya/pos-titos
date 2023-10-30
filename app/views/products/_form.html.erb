@@ -17,6 +17,13 @@
       </div>
 
       <div class="form__group mt-3">
+        <div>
+          <%= form.label :image, "Image" %>
+        </div>
+        <%= form.file_field :image %>
+      </div>
+
+      <div class="form__group mt-3">
         <%= form.button 'Submit', class: 'btn btn-dark'%>
       </div>
     <% end %>

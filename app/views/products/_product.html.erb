@@ -1,4 +1,9 @@
 <div class="unit">
+  <% if product.image.attached? %>
+    <div class="image-container">
+      <%= image_tag product.image.variant(:thumb) %>
+    </div>
+  <% end %>
   <%= link_to product.name, category_product_path(@category, product), class: 'unit-title' %>
   <div class="unit__actions">
     <%= link_to "Edit Product", edit_category_product_path(@category, product) %>
