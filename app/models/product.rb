@@ -22,7 +22,9 @@
 #  fk_rails_...  (order_item_id => order_items.id)
 #
 class Product < ApplicationRecord
+  belongs_to :order_item
   belongs_to :category
+  
   has_one_attached :image do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
     attachable.variant :medium, resize_to_limit: [200, 200]
@@ -40,4 +42,5 @@ class Product < ApplicationRecord
   # Broadcast updates to products/show also
   after_update_commit -> { broadcast_replace_later_to "product", partial: "products/show_product",
     locals: { product: self }, target: "product_#{self.id}" }
+
 end

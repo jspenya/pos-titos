@@ -8,9 +8,14 @@
 
     <%= form.label :name %>
     <%= form.text_field :name %>
-    <div class="unit-actions">
+    <div class="unit-actions button-unit" style = "padding: 10px;">
       <%= form.submit class: 'btn btn-dark' %>
       <%= link_to "Cancel", categories_path, class:"btn btn-warning" %>
     </div>
   </div>
 <% end %>
+
+<%= link_to "Delete Category", category_path(@category), class: 'btn btn-dark', data: {turbo_method: :delete,
+                                                                                       turbo_confirm: "Are you sure?
+                                                                                       "} %>
+  </div>
