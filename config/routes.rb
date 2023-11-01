@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   root "products#index"
 
+  resources :orders do 
+    resources :products
+  end
   resources :categories do
     resources :products, module: "categories"
   end

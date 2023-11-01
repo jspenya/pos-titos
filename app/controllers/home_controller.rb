@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+  def index
+  end
+  
   def homepage
     @category = Category.all
   end
