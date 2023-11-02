@@ -1,3 +1,33 @@
-<h1>Products</h1>
-<%= render @product %>
-
+<h1>Product Details</h1>
+<%= link_to sanitize("&larr; Back to Products"), products_path %>
+<div class="unit">
+  <% if @product.image.attached? %>
+    <%= image_tag @product.image.variant(:medium) %>
+  <% else %>
+    <div class="placeholder">
+      <%= image_tag "placeholder.png" %>
+    </div>
+  <% end %>
+  <div class="product-details container">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <dt>Product name:</dt>
+        <dd><%= @product.name %></dd>
+      </div>
+      <div class="col-md-6">
+        <dt>Category:</dt>
+        <dd><%= @product.category.name %></dd>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <dt>Price:</dt>
+        <dd><%= price_to_peso(@product.price) %></dd>
+      </div>
+      <div class="col-md-6">
+        <dt>Quantity:</dt>
+        <dd><%= @product.quantity %></dd>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 <h1>Categories</h1>
 
-<%= render @categories %>
+<%= link_to "New Category", new_category_path, class: "btn btn-dark mb-3",
+      data: { turbo_frame: dom_id(Category.new) } %>
+<%= turbo_frame_tag dom_id(Category.new) %>
 
-<%= link_to 'New Category', new_category_path, class: 'btn btn-dark' %>
+<%= turbo_frame_tag "categories" do %>
+  <%= render @categories %>
+<% end %>

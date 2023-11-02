@@ -1,0 +1,19 @@
+<%= turbo_frame_tag product do %>
+  <div class="unit">
+    <div class="image-container">
+      <%= link_to product_path(product) do %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image.variant(:thumb) %>
+        <% else %>
+          <div class="placeholder__thumb">
+            <%= image_tag "placeholder.png" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <%= link_to product.name, product_path(product), class: 'unit-title' %>
+    <div class="unit__actions">
+      <%= link_to "Edit Product", edit_product_path(product) %>
+    </div>
+  </div>
+<% end %>

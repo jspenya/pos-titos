@@ -1,7 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-12">
       <div class="unit form">
+        <% if product.errors.any? %>
+          <div class="error-message">
+            <%= product.errors.full_messages.to_sentence.capitalize %>
+          </div>
+        <% end %>
         <%= form_with(model: product, class: "w-100", local: true, multipart: true) do |form| %>
           <div class="form__group">
             <dt>
@@ -63,7 +68,8 @@
           </div>
 
           <div class="form__group mt-4">
-            <%= form.button 'Submit', class: 'btn btn-dark w-100'%>
+            <%= form.button "Submit", class: "btn btn-dark w-100" %>
+            <%= link_to "Cancel", products_path, class:"btn btn-warning w-100 mt-1" %>
           </div>
         <% end %>
       </div>
