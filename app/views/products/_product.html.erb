@@ -1,13 +1,13 @@
 <div class="unit">
   <% if product.image.attached? %>
     <div class="image-container">
-      <%= link_to category_product_path(@category, product) do %>
+      <%= link_to product_path(product) do %>
         <%= image_tag product.image.variant(:thumb) %>
       <% end %>
     </div>
   <% end %>
-  <%= link_to product.name, category_product_path(@category, product), class: 'unit-title' %>
+  <%= link_to product.name, product_path(product), class: 'unit-title' %>
   <div class="unit__actions">
-    <%= link_to "Edit Product", edit_category_product_path(@category, product) %>
+    <%= link_to "Edit Product", edit_product_path(product) %>
   </div>
 </div>
