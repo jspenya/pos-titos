@@ -1,13 +1,25 @@
-<div class="unit">
-  <% if product.image.attached? %>
+<%= turbo_frame_tag product do %>
+  <div class="unit text-left">
     <div class="image-container">
-      <%= link_to product_path(product) do %>
-        <%= image_tag product.image.variant(:thumb) %>
+      <%= link_to product_path(product), data: { turbo_frame: "_top" } do %>
+        <% if product.image.attached? %>
+          <%= image_tag product.image.variant(:thumb) %>
+        <% else %>
+          <div class="placeholder__thumb">
+            <%= image_tag "placeholder.png" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-  <% end %>
-  <%= link_to product.name, product_path(product), class: 'unit-title' %>
-  <div class="unit__actions">
-    <%= link_to "Edit Product", edit_product_path(product) %>
+    <div class="product-details">
+      <%= link_to product.name, product_path(product), class: 'unit-title',
+          data: { turbo_frame: "_top" }  %>
+      <%= price_to_peso(product.price) %>
+    </div>
+    <div class="unit__actions">
+      <%= link_to "Edit Product", edit_product_path(product), class: "btn btn-warning" %>
+      <%= button_to "Delete", product_path(product), method: :delete, class: "btn btn-dark",
+        form: { data: { turbo_confirm: "Are you sure you want to delete this?" } } %>
+    </div>
   </div>
-</div>
+<% end %>

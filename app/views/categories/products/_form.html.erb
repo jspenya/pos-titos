@@ -1,8 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-12">
       <div class="unit form">
         <%= form_with(**product_form_opts(@category, product)) do |form| %>
+          <% puts "-------------------------------------" %>
+          <% puts product.errors.full_messages.to_sentence.capitalize%>
+          <% puts "-------------------------------------" %>
+          <% if product.errors.any? %>
+            <div class="error-message">
+              <%= product.errors.full_messages.to_sentence.capitalize %>
+            </div>
+          <% end %>
           <div class="form__group">
             <dt>
               <%= form.label :name %>
@@ -56,6 +64,7 @@
 
           <div class="form__group mt-4">
             <%= form.button 'Submit', class: 'btn btn-dark w-100'%>
+            <%= link_to "Cancel", category_products_path, class:"btn btn-warning w-100 mt-1" %>
           </div>
         <% end %>
       </div>

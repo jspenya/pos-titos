@@ -2,4 +2,6 @@
 
 <h1> Edit Category </h1>
 
-<%= render "form" %>
+<%= turbo_frame_tag @category do %>
+  <%= render "form", category: @category %>
+<% end %>

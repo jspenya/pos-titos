@@ -58,6 +58,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "annotate"
   gem "hotwire-livereload", "~> 1.3"
   gem "web-console"
 
