@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+    @products = Product.ordered
   end
 
   def show; end
@@ -14,34 +14,38 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
-    respond_to do |format|
-      if @product.save
+    if @product.save
+      respond_to do |format|
         format.html { redirect_to products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit; end
 
   def update
-    respond_to do |format|
-      if @product.update(product_params)
+    if @product.update(product_params)
+      respond_to do |format|
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
-      else
-        format.html { render :edit }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @product.destroy
-    redirect_to products_path, notice: 'Product was successfully destroyed.'
+    @product.destroy!
+
+    respond_to do |format|
+      format.html { redirect_to products_path, notice: "Product was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

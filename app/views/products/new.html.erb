@@ -1,4 +1,7 @@
 <div class="text-center">
   <h1>New Product</h1>
 </div>
-<%= render 'form', product: @product %>
+
+<%= turbo_frame_tag @product do %>
+  <%= render "form", product: @product %>
+<% end %>

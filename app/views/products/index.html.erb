@@ -1,5 +1,9 @@
 <h1>Products</h1>
 
-<%= render @products %>
+<%= link_to "New Product", new_product_path, class: "btn btn-dark",
+      data: { turbo_frame: dom_id(Product.new) } %>
+<%= turbo_frame_tag dom_id(Product.new) %>
 
-<%= link_to 'New Product', new_product_path, class: 'btn btn-dark' %>
+<%= turbo_frame_tag "products" do %>
+  <%= render @products %>
+<% end %>
