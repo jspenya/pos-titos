@@ -1,24 +1,22 @@
 class ProductsController < ApplicationController
-  before_action :get_category
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = @category.products
+    @products = Product.all
   end
 
   def show; end
 
   def new
-    @product = @category.products.build
+    @product = Product.new
   end
 
   def create
-    @category = Category.find(params[:category_id])
-    @product = @category.products.build(product_params)
+    @product = Product.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to category_path(@category), notice: 'Product was successfully created.' }
+        format.html { redirect_to products_path, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -32,7 +30,7 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to category_path(@category), notice: 'Product was successfully updated.' }
+        format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -42,24 +40,17 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = @category.products.find(params[:id])
     @product.destroy
-    redirect_to category_path(@category), notice: 'Product was successfully destroyed.'
+    redirect_to products_path, notice: 'Product was successfully destroyed.'
   end
-
-
 
   private
 
-    def set_product
-      @product = @category.products.find(params[:id])
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    def product_params
-      params.require(:product).permit(:name, :quantity, :price, :category_id, :image)
-    end
-
-    def get_category
-      @category= Category.find(params[:category_id])
-    end
+  def product_params
+    params.require(:product).permit(:name, :quantity, :price, :category_id, :image)
+  end
 end
