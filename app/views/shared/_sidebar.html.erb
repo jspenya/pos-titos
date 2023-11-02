@@ -1,0 +1,40 @@
+<% if user_signed_in? %>
+  <div id="nav-bar" style="position: fixed;">
+    <input id="nav-toggle" type="checkbox" checked=true/>
+    <div id="nav-header">
+      <%= link_to root_path, id: "nav-title" do %>
+        <%= bootstrap_icon "robot", width: '1.5rem', height: '1.5rem', style: "margin-right:5px;padding-bottom:3px;"%>
+        BOBORDS
+      <% end %>
+      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
+      <hr/>
+    </div>
+    <div id="nav-content">
+      <div class="nav-button">
+        <%= link_to categories_path do %>
+          <i class="fas fa-box"></i>
+          <span>Categories</span>
+        <% end %>
+      </div>
+      <div class="nav-button">
+        <%= link_to products_path do %>
+          <i class="fas fa-fire"></i>
+          <span>Products</span>
+        <% end %>
+      </div>
+      <hr/>
+      <div id="nav-content-highlight"></div>
+    </div>
+    <input id="nav-footer-toggle" type="checkbox"/>
+    <div id="nav-footer">
+      <div id="nav-footer-heading">
+        <div id="nav-footer-avatar"><%= bootstrap_icon "cpu", width: '1.5rem', height: '1.5rem', style: "margin-right:5px;padding-bottom:3px;"%></div>
+        <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank"></a><span id="nav-footer-subtitle">Bobords POS v1.0</span></div>
+        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+      </div>
+      <div id="nav-footer-content">
+        <span>Topias Miikka Taavitsainen (born 14 April 1998), better known as Topson, is a Finnish professional Dota 2 player for Tundra Esports. As a member of OG, he won The International 2018 and The International 2019.</span>
+      </div>
+    </div>
+  </div>
+<% end %>
