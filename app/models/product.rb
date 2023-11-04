@@ -34,7 +34,6 @@ class Product < ApplicationRecord
   validates :quantity, presence: true
   validates :price, presence: true
 
-  scope :ordered, -> { order(id: :desc) }
 
   # This is a shorter way to write the broadcast callbacks (create, update, destroy)
   broadcasts_to ->(product) { "products" }, inserts_by: :prepend

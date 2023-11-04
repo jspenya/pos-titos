@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :products, module: "categories"
   end
 
+  
   resources :products
 end
 
