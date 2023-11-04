@@ -1,1 +1,21 @@
-<h1> This is a form </h1>
+
+<%= form_with model: order do |form| %>
+  <div class="unit form">
+    <% if order.errors.any? %>
+      <div class="error-message">
+        <%= order.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :status %>
+    <div class="unit-actions button-unit" style = "padding: 10px;">
+      <%= form.submit class: 'btn btn-dark' %>
+      <%= link_to "Cancel", orders_path, class:"btn btn-warning" %>
+    </div>
+  </div>
+<% end %>
+
