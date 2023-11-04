@@ -1,5 +1,9 @@
-<h1>Categories</h1>
+<h1>Orders</h1>
 
-<%= render @orders %>
+<%= link_to "New Order", new_order_path, class: "btn btn-dark mb-3",
+      data: { turbo_frame: dom_id(Order.new) } %>
+<%= turbo_frame_tag dom_id(Order.new) %>
 
-<%= link_to 'New Order', new_order_path, class: 'btn btn-dark' %>
+<%= turbo_frame_tag "orders" do %>
+  <%= render @orders %>
+<% end %>
