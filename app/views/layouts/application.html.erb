@@ -13,12 +13,14 @@
   </head>
 
   <body>
+ 
     <%= render "shared/navbar" %>
+    <%= render "shared/sidebar" %>
     <%= render "shared/flash" %>
     <div class="container">
       <div class="row">
         <div class="col-md-2">
-          <%= render "shared/sidebar" %>
+
         </div>
         <div class="col-md-10 pt-3">
           <%= yield %>
