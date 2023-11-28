@@ -1,46 +1,120 @@
+
 <% if user_signed_in? %>
+
   <div id="nav-bar" style="position: fixed;">
-    <input id="nav-toggle" type="checkbox" checked=true/>
-    <div id="nav-header">
-      <%= link_to root_path, id: "nav-title" do %>
-        <%= bootstrap_icon "robot", width: '1.5rem', height: '1.5rem', style: "margin-right:5px;padding-bottom:3px;"%>
-        BOBORDS
-      <% end %>
-      <label for="nav-toggle"><span id="nav-toggle-burger"></span></label>
-      <hr/>
-    </div>
-    <div id="nav-content">
-      <div class="nav-button">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <%= link_to root_path, id: "nav-title" do %>
+      <div class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+          </div>
+        <div class="sidebar-brand-text mx-3">BoBords</div>
+      </div>
+    <% end %>
+      <!-- Sidebar - Brand -->
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+          Interface
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+      <div class="nav-link collapsed">
         <%= link_to categories_path do %>
-          <i class="fas fa-box"></i>
-          <span>Categories</span>
-        <% end %>
+        <i class="fas fa-fw fa-box"></i>
+        <span>Categories</span>
+      <% end %>
       </div>
-      <div class="nav-button">
+      </li>
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+      <div class="nav-link collapsed">
         <%= link_to products_path do %>
-          <i class="fas fa-fire"></i>
-          <span>Products</span>
-        <% end %>
+        <i class="fas fa-fw fa-box"></i>
+        <span>Products</span>
+      <% end %>
       </div>
-      <div class="nav-button">
-        <%= link_to orders_path do %>
-          <i class="fas fa-fire"></i>
-          <span>Orders</span>
-        <% end %>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+          Addons
       </div>
-      <hr/>
-      <div id="nav-content-highlight"></div>
-    </div>
-    <input id="nav-footer-toggle" type="checkbox"/>
-    <div id="nav-footer">
-      <div id="nav-footer-heading">
-        <div id="nav-footer-avatar"><%= bootstrap_icon "cpu", width: '1.5rem', height: '1.5rem', style: "margin-right:5px;padding-bottom:3px;"%></div>
-        <div id="nav-footer-titlebox"><a id="nav-footer-title" href="https://codepen.io/uahnbu/pens/public" target="_blank"></a><span id="nav-footer-subtitle">Bobords POS v1.0</span></div>
-        <label for="nav-footer-toggle"><i class="fas fa-caret-up"></i></label>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+              aria-expanded="true" aria-controls="collapsePages">
+              <i class="fas fa-fw fa-folder"></i>
+              <span>Pages</span>
+          </a>
+          <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Login Screens:</h6>
+                  <a class="collapse-item" href="login.html">Login</a>
+                  <a class="collapse-item" href="register.html">Register</a>
+                  <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                  <div class="collapse-divider"></div>
+                  <h6 class="collapse-header">Other Pages:</h6>
+                  <a class="collapse-item" href="404.html">404 Page</a>
+                  <a class="collapse-item" href="blank.html">Blank Page</a>
+              </div>
+          </div>
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+          <a class="nav-link" href="charts.html">
+              <i class="fas fa-fw fa-chart-area"></i>
+              <span>Charts</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Tables</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-      <div id="nav-footer-content">
-        <span>Topias Miikka Taavitsainen (born 14 April 1998), better known as Topson, is a Finnish professional Dota 2 player for Tundra Esports. As a member of OG, he won The International 2018 and The International 2019.</span>
+
+      <!-- Sidebar Message -->
+      <div class="sidebar-card d-none d-lg-flex">
+          <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
+          <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
+          <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
       </div>
-    </div>
+
+  </ul>
+  <!-- End of Sidebar -->
   </div>
-<% end %>
+
+
+
+  <% end %>
