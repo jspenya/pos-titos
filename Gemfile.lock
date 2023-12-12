@@ -71,10 +71,15 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
+    autoprefixer-rails (10.4.16.0)
+      execjs (~> 2)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
+    bootstrap (5.3.2)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 2.11.8, < 3)
     bootstrap-icons (1.0.13)
       nokogiri (~> 1)
     bootstrap-icons-helper (2.0.1)
@@ -105,6 +110,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.12.0)
+    execjs (2.9.1)
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -158,6 +164,7 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pg (1.5.4)
+    popper_js (2.11.8)
     psych (5.1.1)
       stringio
     public_suffix (5.0.3)
@@ -259,6 +266,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   bootsnap
+  bootstrap (~> 5.3.2)
   bootstrap-icons-helper (~> 2.0, >= 2.0.1)
   capybara
   cssbundling-rails
