@@ -25,11 +25,12 @@ class User < ApplicationRecord
 
   enum role: [:admin, :cashier]
 
-  def is_admin?
-    role.name == 'admin'
+  def admin?
+    role == "admin"
   end
 
-  def is_cashier?
-    role.name == 'cashier'
+  def cashier?
+    role == "cashier"
   end
+
 end

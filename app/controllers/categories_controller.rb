@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def update
+    authorize @category
     if @category.update(category_params)
       respond_to do |format|
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
@@ -26,11 +27,13 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def create
+    authorize @category
     @category = Category.new(category_params)
-
+    
     if @category.save
       respond_to do |format|
         format.html { redirect_to categories_path, notice: "Category was successfully created." }
@@ -43,8 +46,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @category
     @category.destroy!
-
+    
     respond_to do |format|
       format.html { redirect_to categories_path, notice: "Category was successfully destroyed." }
       format.turbo_stream
