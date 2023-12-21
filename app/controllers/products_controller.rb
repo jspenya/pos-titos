@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   def index
 
     @products = Product.ordered
-    authorize @products
+    #authorize @products
   end
 
   def show; end
@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def create
+
     @product = Product.new(product_params)
     authorize @product
     if @product.save
@@ -33,6 +34,7 @@ class ProductsController < ApplicationController
   def update
     authorize @product
     if @product.update(product_params)
+
       respond_to do |format|
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }

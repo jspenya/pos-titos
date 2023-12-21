@@ -6,7 +6,9 @@ class CategoryPolicy < ApplicationPolicy
       # end
     end
   
-  
+    def index?
+      user.admin?
+    end
   
     def new?
       user.admin?

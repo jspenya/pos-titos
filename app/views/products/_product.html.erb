@@ -4,7 +4,8 @@
     <%= current_user&.admin? %>
       <%= link_to product_path(product), data: { turbo_frame: "_top" } do %>
         <% if product.image.attached? %>
-          <%= image_tag product.image.variant(:thumb) %>
+          <%= image_tag main_app.url_for(product.image.variant(:thumb)) %>
+
         <% else %>
           <div class="placeholder__thumb">
             <%= image_tag "placeholder.png" %>

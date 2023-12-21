@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET requests
   def index
     @categories = Category.ordered
+    authorize @categories
   end
 
   def show
@@ -31,9 +32,9 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    authorize @category
+
     @category = Category.new(category_params)
-    
+    authorize @category
     if @category.save
       respond_to do |format|
         format.html { redirect_to categories_path, notice: "Category was successfully created." }
