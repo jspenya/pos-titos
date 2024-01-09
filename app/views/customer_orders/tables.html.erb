@@ -1,0 +1,12 @@
+<h1>Tables</h1>
+<div class="row">
+  <% @tables.each do |table| %>
+    <div class="col">
+      <%= link_to customer_orders_path(table) do  %>
+        <div class="table-container">
+          <span><%= table.name %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

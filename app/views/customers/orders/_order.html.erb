@@ -1,0 +1,11 @@
+<div class="unit text-left">
+  <div class="product-details">
+    <%= link_to customer_order_path(customer, order), class: 'unit-title',
+        data: { turbo_frame: "_top" } do %>
+      <%= order.name %> - <%= order.status.titleize %>
+    <% end %>
+  </div>
+  <div class="unit__actions">
+    <%= link_to "Edit Order Items", customer_order_path(customer, order), class: "btn btn-warning" %>
+  </div>
+</div>
