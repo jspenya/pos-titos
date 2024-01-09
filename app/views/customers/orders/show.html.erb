@@ -1,0 +1,7 @@
+<h3 class="underline">Add Items to your Order</h3>
+
+<% unless @order_items.exists? %>
+  <p>You currently have no items in this order.</p>
+<% end %>
+
+<%= render "order_items/menu", products: @products, order: @order %>

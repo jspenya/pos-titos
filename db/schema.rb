@@ -48,9 +48,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_064454) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "customer_orders", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_customer_orders_on_customer_id"
+    t.index ["order_id"], name: "index_customer_orders_on_order_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "role", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -90,6 +108,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_13_064454) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "customer_orders", "customers"
+  add_foreign_key "customer_orders", "orders"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "order_items"

@@ -1,0 +1,12 @@
+<h1>Individual Orders</h1>
+<div class="row">
+  <% @tables.each do |table| %>
+    <div class="col">
+      <%= link_to new_customer_order_path(table:) do  %>
+        <div class="table-container">
+          <span><%= table.name %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

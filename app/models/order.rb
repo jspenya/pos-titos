@@ -20,13 +20,17 @@
 #
 class Order < ApplicationRecord
   belongs_to :user
+  has_many :customer_orders, dependent: :destroy, strict_loading: true
+  has_many :customers, through: :customer_orders, strict_loading: true
+  has_many :order_items, dependent: :destroy, strict_loading: true
+
   enum :status, {in_progress: 0, done: 2}, default: :in_progress
 
+  before_create :generate_name
 
-  # This is a shorter way to write the broadcast callbacks (create, update, destroy)
-  broadcasts_to ->(order) { "orders" }, inserts_by: :prepend
+  private
 
-  # Broadcast updates to categories/show also
-  after_update_commit -> { broadcast_replace_later_to "order", partial: "orders/show_order",
-    locals: { category: self }, target: "category_#{self.id}" }
+  def generate_name
+    self.name = Date.today.to_s.gsub('-', '') + "ORDID##{self.id}"
+  end
 end
