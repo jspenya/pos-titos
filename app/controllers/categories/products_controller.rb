@@ -5,6 +5,7 @@ module Categories
 
     def index
       @products = @category.products.ordered
+  
     end
 
     def show; end

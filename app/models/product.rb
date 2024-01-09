@@ -2,13 +2,24 @@
 #
 # Table name: products
 #
-#  id          :bigint           not null, primary key
-#  name        :string
-#  quantity    :integer
-#  price       :decimal(, )
-#  category_id :bigint           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :bigint           not null, primary key
+#  name          :string
+#  price         :decimal(, )
+#  quantity      :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  category_id   :bigint           not null
+#  order_item_id :bigint
+#
+# Indexes
+#
+#  index_products_on_category_id    (category_id)
+#  index_products_on_order_item_id  (order_item_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (category_id => categories.id)
+#  fk_rails_...  (order_item_id => order_items.id)
 #
 class Product < ApplicationRecord
   belongs_to :category

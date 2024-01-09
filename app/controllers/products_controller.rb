@@ -2,18 +2,22 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
+
     @products = Product.ordered
+    #authorize @products
   end
 
   def show; end
 
   def new
     @product = Product.new
+    authorize @product
   end
 
   def create
-    @product = Product.new(product_params)
 
+    @product = Product.new(product_params)
+    authorize @product
     if @product.save
       respond_to do |format|
         format.html { redirect_to products_path, notice: 'Product was successfully created.' }
@@ -28,7 +32,9 @@ class ProductsController < ApplicationController
   def edit; end
 
   def update
+    authorize @product
     if @product.update(product_params)
+
       respond_to do |format|
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
@@ -40,6 +46,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    authorize @product
     @product.destroy!
 
     respond_to do |format|
