@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.ordered
+    authorize @products
   end
 
   def show; end

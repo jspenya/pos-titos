@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'customer_order/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  authenticated :user, ->(user) { user.cashier? } do
+    root to: 'customer_orders#tables', as: :cashier_root
+  end
+  
   devise_for :users
   root "products#index"
 

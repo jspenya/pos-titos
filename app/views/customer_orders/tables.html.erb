@@ -1,12 +1,13 @@
 <h1>Tables</h1>
+<%= link_to "New Customer", new_customer_path, class: "btn btn-dark mb-3" %>
 <div class="row">
   <% @tables.each do |table| %>
-    <div class="col">
-      <%= link_to customer_orders_path(table) do  %>
-        <div class="table-container">
-          <span><%= table.name %></span>
+    <div class="unit">
+      <%= link_to table.name, customer_orders_path(table),
+      data: { turbo_frame: "_top" }, class: 'unit-title' %>
+        <div class = "unit_actions",>
+           <%= link_to "Edit Customer", edit_customer_path(table), class: "btn btn-warning" %>
         </div>
-      <% end %>
     </div>
   <% end %>
 </div>

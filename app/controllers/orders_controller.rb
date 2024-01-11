@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.ordered
+    authorize @orders
   end
 
   def show
@@ -10,6 +11,7 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    #authorize @order
   end
 
   def create
