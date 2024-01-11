@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   authenticated :user, ->(user) { user.cashier? } do
     root to: 'products#index', as: :cashier_root
+    root to: 'customer_orders#tables', as: :cashier_root
   end
-  
+
   devise_for :users
   root "products#index"
 

@@ -52,23 +52,26 @@
       <% end %>
       </div>
       </li>
+
+
       <li class="nav-item">
         <div class="nav-link collapsed">
-          <%= link_to orders_path do %>
-            <i class="fas fa-clipboard"></i>
-            <span>Orders</span>
+          <%= link_to customer_orders_tables_path do %>
+            <i class="fas fa-user-plus"></i>
+            <span>Customer Tables</span>
           <% end %>
         </div>
       </li>
 
       <li class="nav-item">
         <div class="nav-link collapsed">
-          <%= link_to customer_orders_tables_path do %>
+          <%= link_to customer_orders_individual_orders_path do %>
             <i class="fas fa-user-plus"></i>
-            <span>Customer Orders</span>
+            <span>Individual Customer</span>
           <% end %>
         </div>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider">

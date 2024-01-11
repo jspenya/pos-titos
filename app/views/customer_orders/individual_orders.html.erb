@@ -1,12 +1,13 @@
 <h1>Individual Orders</h1>
+<%= link_to "New Customer", new_customer_path, class: "btn btn-dark mb-3" %>
 <div class="row">
-  <% @tables.each do |table| %>
-    <div class="col">
-      <%= link_to new_customer_order_path(table:) do  %>
-        <div class="table-container">
-          <span><%= table.name %></span>
+  <% @individual.each do |individual| %>
+    <div class="unit">
+      <%= link_to individual.name, customer_orders_path(individual),
+      data: { turbo_frame: "_top" }, class: 'unit-title' %>
+        <div class = "unit_actions",>
+           <%= link_to "Edit Customer", edit_customer_path(individual), class: "btn btn-warning" %>
         </div>
-      <% end %>
     </div>
   <% end %>
 </div>
