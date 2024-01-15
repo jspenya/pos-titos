@@ -8,6 +8,10 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+<<<<<<< HEAD
+=======
+#  role                   :integer
+>>>>>>> 5cc82ad2e701c1c91547a0e223e8f61893fc61a6
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
