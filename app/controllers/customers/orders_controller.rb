@@ -11,7 +11,7 @@ module Customers
     private
 
     def set_customer_orders
-      @customer = Customer.includes(:orders).find(params[:customer_id])
+      @customer = Customer.find(params[:customer_id])
       @orders = @customer.orders
     end
   end

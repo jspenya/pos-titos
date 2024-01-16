@@ -1,5 +1,5 @@
 <h1>Tables</h1>
-<%= link_to "New Customer", new_customer_path, class: "btn btn-dark mb-3" %>
+<%= link_to "New Customer", new_customer_path(role: 'table'), class: "btn btn-dark mb-3" %>
 <div class="row">
   <% @tables.each do |table| %>
     <div class="unit">

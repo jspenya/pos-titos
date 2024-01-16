@@ -25,13 +25,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   enum role: [:admin, :cashier]
-
-  def admin?
-    role == "admin"
-  end
-
-  def cashier?
-    role == "cashier"
-  end
-
 end

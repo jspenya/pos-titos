@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
 
     if @customer.save
       respond_to do |format|
-        format.html { redirect_to customers_path, notice: 'customer was successfully created.' }
+        format.html { redirect_to customer_orders_path(@customer), notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
         format.turbo_stream
       end

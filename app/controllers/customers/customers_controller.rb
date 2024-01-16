@@ -1,6 +1,4 @@
 module Customers
-    class CustomersController < CustomersController
-
-
-    end
+  class CustomersController < CustomersController
+  end
 end
