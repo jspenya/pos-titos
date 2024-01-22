@@ -4,8 +4,10 @@ module Customers
     def index; end
 
     def show
-      @order_items = @order.order_items
-      @products = Product.available
+      @allProducts = Product.all
+      @products = Product.find_by!(params[:order_item_id])
+      @order_items = @order.order_items.includes(:product)
+      # @item = @order_items.products
     end
 
     private

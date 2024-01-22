@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.ordered
-    authorize @orders
+
   end
 
   def show

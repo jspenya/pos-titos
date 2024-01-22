@@ -22,7 +22,7 @@
 #  fk_rails_...  (order_item_id => order_items.id)
 #
 class Product < ApplicationRecord
-  belongs_to :order_item, optional: true
+  has_many :order_items, dependent: :destroy
   belongs_to :category
 
   has_one_attached :image do |attachable|
@@ -42,5 +42,4 @@ class Product < ApplicationRecord
   # Broadcast updates to products/show also
   after_update_commit -> { broadcast_replace_later_to "product", partial: "products/show_product",
     locals: { product: self }, target: "product_#{self.id}" }
-
 end
