@@ -22,4 +22,12 @@ class OrderItem < ApplicationRecord
   belongs_to :product, dependent: :destroy
   validates :product, presence: true
   belongs_to :order
+
+  after_commit :decrement_product_quantity
+
+  private
+
+  def decrement_product_quantity
+    product.decrement!(:quantity, by = 1, touch: nil)
+  end
 end
