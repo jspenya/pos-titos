@@ -23,7 +23,7 @@ class OrderItem < ApplicationRecord
   validates :product, presence: true
   belongs_to :order
 
-  after_commit :decrement_product_quantity
+  after_commit :decrement_product_quantity, on: :create
 
   private
 

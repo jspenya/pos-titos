@@ -1,9 +1,4 @@
 <h3 class="underline">Add Items to your Order</h3>
-<%
-=begin%>
- <%= link_to "New Item", new_customer_order_order_item_path(@customer, @order), class: "btn btn-dark mb-3" %> 
-<%
-=end%>
 <div class="container mt-5">
     <h1 class="mb-4">Product Menu</h1>
     <div class = "row">
@@ -15,10 +10,9 @@
             <h5 class="card-title"><%= product.name %></h5>
             <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
             <p class="card-text"><span>Price: ₱</span><%= product.price %></p>
-            <!-- Add other product details as needed -->
             <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
-                <%= form.hidden_field :product_id, value: product.id %>
-                <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
+              <%= form.hidden_field :product_id, value: product.id %>
+              <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
             <% end %>
           </div>
         </div>
@@ -26,38 +20,12 @@
     <% end %>
     </div>
 </div>
-
-<%
-=begin%>
- <% orders.each do |order| %>
-  <div class="unit text-left">
-    <div class="product-details">
-        <%= order.name %>
-      <% end %>
-    </div>
-    <div class="unit__actions">
-      <%= link_to "Edit Order Items", customer_order_path(customer, order), class: "btn btn-warning" %>
-    </div>
-  </div>
-<% end %> 
-<%
-=end%>
-
-
 <% if @order_items.exists? %>
-    <% @order_items.each do |o| %>
-      <div class="unit text-left">
-        <div class = "order-details">
-          <%= o.product.name %> - <%= o.product.quantity %>
-        </div>
-      </div>
-    <% end %>
-<% else %>  
+  <% @order_items.each do |order_item| %>
+    <%= render partial: "customers/orders/order_item", locals: { order_item: order_item } %>
+  <% end %>
+<% else %>
     <p>You currently have no items in this order.</p>
 <% end %>
 
-<%
-=begin%>
- <%= render "order_items/menu", products: @products, order: @order, customer: @customer %> 
-<%
-=end%>
+<div id="order_item"></div>
