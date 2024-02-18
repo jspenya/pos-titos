@@ -108,16 +108,9 @@
 }
 
 #nav-bar {
-  position: absolute;
-  left: 1vw;
-  top: 1vw;
   height: calc(100% - 2vw);
-  background: var(--navbar-dark-primary);
   border-radius: 16px;
-  display: flex;
-  flex-direction: column;
   color: var(--navbar-light-primary);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   overflow: hidden;
   user-select: none;
 
@@ -421,4 +414,12 @@ label[for="nav-footer-toggle"] {
 
 .underline {
   text-decoration: underline;
+}
+
+.authentication {
+  &__container {
+    position: absolute;
+    right: 0;
+    padding-right: 1em;
+  }
 }
