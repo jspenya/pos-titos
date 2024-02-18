@@ -12,22 +12,18 @@
   </head>
   
   <body>
- 
+
     <%= render "shared/navbar" %>
-    <%= render "shared/sidebar" %>
     <%= render "shared/flash" %>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="row">
-            <%= render "shared/status" %>    
+        <div class="col-md-2">
+          <%= render "shared/sidebar" %>
+        </div>
+        <div class="col-md-10 pt-3 shadow">
+          <%= yield %>
         </div>
       </div>
-        <div class="row">
-          <div class="col-md-10 pt-3 shadow">
-            <%= yield %>
-          </div>
-        </div>
-      
     </div>
   </body>
 </html>
