@@ -1,1 +1,6 @@
-<h1><%= order_item.product.name %></h1>
+    
+    
+    <% @product_counts.each do |product_name, count| %>
+      <li><%= product_name %> - <%= count %></li>
+    <% end %>
+   

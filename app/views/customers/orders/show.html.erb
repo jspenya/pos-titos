@@ -2,30 +2,28 @@
 <div class="container mt-5">
     <h1 class="mb-4">Product Menu</h1>
     <div class = "row">
-    <% @allProducts.each do |product| %>
-      <div class="col-md-2 mb-3">
-        <div class="card">
-          <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
-            <p class="card-text"><span>Price: ₱</span><%= product.price %></p>
-            <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
-              <%= form.hidden_field :product_id, value: product.id %>
-              <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
-            <% end %>
+      <% @allProducts.each do |product| %>
+        <div class="col-md-2 mb-3">
+          <div class="card">
+            <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
+              <p class="card-text"><span>Price: ₱</span><%= product.price %></p>
+              <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
+                <%= form.hidden_field :product_id, value: product.id %>
+                <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+        <% end %>
     </div>
 </div>
+<div id="order_item">
 <% if @order_items.exists? %>
-  <% @order_items.each do |order_item| %>
-    <%= render partial: "customers/orders/order_item", locals: { order_item: order_item } %>
-  <% end %>
+  <%= render 'customers/orders/order_item', locals: { product_counts: @product_counts } %>
 <% else %>
     <p>You currently have no items in this order.</p>
 <% end %>
-
-<div id="order_item"></div>
+</div>
