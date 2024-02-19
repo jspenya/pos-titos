@@ -25,6 +25,13 @@ class OrderItem < ApplicationRecord
 
   after_commit :decrement_product_quantity, on: :create
 
+  def self.similar_items_in_order(order_id = nil, product_id = nil)
+    scope = self
+    scope = scope.where(order_id:) if order_id
+    scope = scope.where(product_id:) if product_id
+    scope
+  end
+
   private
 
   def decrement_product_quantity

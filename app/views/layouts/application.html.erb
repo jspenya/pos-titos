@@ -10,7 +10,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="./style.css">
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
-  
+
   <body>
 
     <%= render "shared/navbar" %>
@@ -20,7 +20,7 @@
         <div class="col-md-2">
           <%= render "shared/sidebar" %>
         </div>
-        <div class="col-md-10 pt-3 shadow">
+        <div class="col-md-10">
           <%= yield %>
         </div>
       </div>

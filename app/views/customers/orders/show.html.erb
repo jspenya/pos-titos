@@ -5,7 +5,13 @@
       <% @allProducts.each do |product| %>
         <div class="col-md-2 mb-3">
           <div class="card">
-            <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+            <% if product.image.attached? %>
+              <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+            <% else %>
+              <div class="placeholder__thumb">
+                <%= image_tag "placeholder.png" %>
+              </div>
+            <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
               <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
@@ -22,8 +28,8 @@
 </div>
 <div id="order_item">
 <% if @order_items.exists? %>
-  <%= render 'customers/orders/order_item', locals: { product_counts: @product_counts } %>
+  <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
 <% else %>
-    <p>You currently have no items in this order.</p>
+  <p>You currently have no items in this order.</p>
 <% end %>
 </div>

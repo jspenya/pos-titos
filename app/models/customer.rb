@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 class Customer < ApplicationRecord
-  has_many :orders
+  has_many :orders, dependent: :destroy, strict_loading: true
 
   enum :role, {
     individual: 0,

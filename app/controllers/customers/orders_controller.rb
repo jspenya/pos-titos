@@ -1,8 +1,7 @@
 module Customers
   class OrdersController < OrdersController
-    before_action :set_order, only: [:show]
-    before_action :set_customer_orders, only: [:index, :show]
-    before_action :count_order_items, only: [:show]
+    before_action :set_orders, only: [:index, :show]
+    before_action :set_similar_items_in_order, only: [:show]
     def index; end
 
     def show
@@ -10,12 +9,12 @@ module Customers
       #@products = Product.find_by!(params[:order_item_id])
       @order_items = @order.order_items.includes(:product)
       # @item = @order_items.products
-      @last_order_item = @order.order_items.last 
+      @last_order_item = @order.order_items.last
       respond_to do |format|
         format.html
         format.pdf do
           render pdf: "testing",
-          template: 'customers/orders/show', 
+          template: 'customers/orders/show',
           formats: [:html],
           pagesize: "letter",
           layout: "pdf",
@@ -27,19 +26,16 @@ module Customers
     end
 
     private
-     def count_order_items
-      #set_order
-      @order_items = @order.order_items.includes(:product)
-      @product_counts = @order_items.group_by { |item| item.product.name }.transform_values(&:count)
-     end
 
-    def set_order
-      @order = Order.includes(:order_items).find(params[:id])
+    def set_similar_items_in_order
+      @order_items = @order.order_items
+      @grouped_similar_items_in_order = @order_items.similar_items_in_order(@order.id)
+                                            .group(:product).count
     end
 
-    def set_customer_orders
-      @customer = Customer.find(params[:customer_id])
-      @orders = @customer.orders
+    def set_orders
+      @customer = Customer.includes(:orders).find(params[:customer_id])
+      @orders = @customer.orders.includes(:order_items)
     end
   end
 end

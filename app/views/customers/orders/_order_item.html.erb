@@ -1,6 +1,3 @@
-    
-    
-    <% @product_counts.each do |product_name, count| %>
-      <li><%= product_name %> - <%= count %></li>
-    <% end %>
-   
+<% @grouped_similar_items_in_order.each do |product, count| %>
+  <li id="order_item_product_<%= product.id %>"><%= product.name %> - <%= count %></li>
+<% end %>
