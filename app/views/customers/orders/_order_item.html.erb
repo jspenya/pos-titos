@@ -1,3 +1,13 @@
+<h3>Item List</h3>
 <% @grouped_similar_items_in_order.each do |product, count| %>
-  <li id="order_item_product_<%= product.id %>"><%= product.name %> - <%= count %></li>
+  <div class="card mb-3" id="order_item_product_<%= product.id %>">
+    <div class="card-body">
+      <h5 class="card-title"><%= product.name %></h5>
+      <p class="card-text">Count: <%= count %></p>
+      <p class="card-text">Total: <%= product.price * count %></p>
+    </div>
+  </div>
 <% end %>
+
+  
+

@@ -9,7 +9,6 @@ module Customers
       def new
         @products = Product.available
       end
-
       def show; end
 
       def create

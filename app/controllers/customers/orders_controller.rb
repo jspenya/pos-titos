@@ -6,9 +6,8 @@ module Customers
 
     def show
       @allProducts = Product.all
-      #@products = Product.find_by!(params[:order_item_id])
       @order_items = @order.order_items.includes(:product)
-      # @item = @order_items.products
+      @total_order_amount = @order.order_items.includes(:product).sum("products.price")
       @last_order_item = @order.order_items.last
       respond_to do |format|
         format.html
@@ -22,7 +21,6 @@ module Customers
           viewport_size: '1280x1024'
         end
       end
-
     end
 
     private

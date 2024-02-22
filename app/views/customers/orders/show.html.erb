@@ -29,6 +29,9 @@
 <div id="order_item">
 <% if @order_items.exists? %>
   <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
+  <div id="order_total"> 
+    <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+  </div>
 <% else %>
   <p>You currently have no items in this order.</p>
 <% end %>
