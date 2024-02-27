@@ -1,0 +1,20 @@
+<%# locals = customer %>
+<%# locals = products %>
+<%# locals = order %>
+
+
+
+<h1>Order Items</h1>
+<div class="row">
+  <% products.each do |product| %>
+    <div class="col box">
+      <%= button_to customer_order_order_items_path(product, order) do  %>
+        <div class="table-container">
+          <span><%= product.name.titleize %></span>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= turbo_frame_tag "order_items_list" %>

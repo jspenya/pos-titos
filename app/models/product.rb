@@ -22,7 +22,9 @@
 #  fk_rails_...  (order_item_id => order_items.id)
 #
 class Product < ApplicationRecord
+  has_many :order_items, dependent: :destroy
   belongs_to :category
+
   has_one_attached :image do |attachable|
     attachable.variant :thumb, resize_to_limit: [100, 100]
     attachable.variant :medium, resize_to_limit: [200, 200]
@@ -32,7 +34,7 @@ class Product < ApplicationRecord
   validates :quantity, presence: true
   validates :price, presence: true
 
-  scope :ordered, -> { order(id: :desc) }
+  scope :available, -> { where.not("quantity <= 0") }
 
   # This is a shorter way to write the broadcast callbacks (create, update, destroy)
   broadcasts_to ->(product) { "products" }, inserts_by: :prepend

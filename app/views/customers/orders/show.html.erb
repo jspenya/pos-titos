@@ -1,0 +1,38 @@
+<h3 class="underline">Add Items to your Order</h3>
+<div class="container mt-5">
+    <h1 class="mb-4">Product Menu</h1>
+    <div class = "row">
+      <% @allProducts.each do |product| %>
+        <div class="col-md-2 mb-3">
+          <div class="card">
+            <% if product.image.attached? %>
+              <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+            <% else %>
+              <div class="placeholder__thumb">
+                <%= image_tag "placeholder.png" %>
+              </div>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
+              <p class="card-text"><span>Price: ₱</span><%= product.price %></p>
+              <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
+                <%= form.hidden_field :product_id, value: product.id %>
+                <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+<div id="order_item">
+<% if @order_items.exists? %>
+  <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
+  <div id="order_total"> 
+    <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+  </div>
+<% else %>
+  <p>You currently have no items in this order.</p>
+<% end %>
+</div>

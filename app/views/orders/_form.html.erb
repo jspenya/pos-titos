@@ -1,0 +1,17 @@
+<%= form_with model: order do |form| %>
+  <div class="unit form">
+    <% if order.errors.any? %>
+      <div class="error-message">
+        <%= order.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :customer_id, value: customer.id %>
+
+    <%= form.hidden_field :status %>
+    <div class="unit-actions button-unit" style = "padding: 10px;">
+      <%= form.submit class: 'btn btn-dark' %>
+    </div>
+  </div>
+<% end %>

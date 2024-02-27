@@ -1,0 +1,11 @@
+<%= turbo_frame_tag order do %>
+  <div class="unit">
+    <%= link_to order.name, order_path(order),
+      data: { turbo_frame: "_top" }, class: 'unit-title' %>
+    <div class="unit__actions",>
+      <%= link_to "Edit Order", edit_order_path(order), class: "btn btn-warning" %>
+      <%= button_to "Delete", order_path(order), method: :delete, class: "btn btn-dark",
+        form: { data: { turbo_confirm: "Are you sure you want to delete this?" } } %>
+    </div>
+  </div>
+<% end %>

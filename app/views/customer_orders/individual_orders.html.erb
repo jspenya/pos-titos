@@ -1,0 +1,13 @@
+<h1>Individual Orders</h1>
+<%= link_to "New Customer", new_customer_path(role: 'individual'), class: "btn btn-dark mb-3" %>
+<div class="row">
+  <% @individual.each do |individual| %>
+    <div class="unit">
+      <%= link_to individual.name, customer_orders_path(individual),
+      data: { turbo_frame: "_top" }, class: 'unit-title' %>
+        <div class = "unit_actions",>
+           <%= link_to "Edit Customer", edit_customer_path(individual), class: "btn btn-warning" %>
+        </div>
+    </div>
+  <% end %>
+</div>

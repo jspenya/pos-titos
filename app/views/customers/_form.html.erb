@@ -1,0 +1,19 @@
+<%= form_with model: @customer, data: { turbo: 'false'} do |form| %>
+  <div class="unit form">
+    <% if category.errors.any? %>
+      <div class="error-message">
+        <%= category.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+
+    <%= form.hidden_field :role, value: params[:role] %>
+    <div class="unit-actions button-unit" style = "padding: 10px;">
+      <%= form.submit class: 'btn btn-dark' %>
+      <%= link_to "Cancel", customer_orders_tables_path, class:"btn btn-warning" %>
+    </div>
+  </div>
+<% end %>
+

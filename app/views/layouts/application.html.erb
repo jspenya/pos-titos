@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'><link rel="stylesheet" href="./style.css">
@@ -13,22 +12,18 @@
   </head>
 
   <body>
- 
+
     <%= render "shared/navbar" %>
-    <%= render "shared/sidebar" %>
     <%= render "shared/flash" %>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <div class="row">
-            <%= render "shared/status" %>    
+        <div class="col-md-2">
+          <%= render "shared/sidebar" %>
+        </div>
+        <div class="col-md-10">
+          <%= yield %>
         </div>
       </div>
-        <div class="row">
-          <div class="col-md-10 pt-3 shadow">
-            <%= yield %>
-          </div>
-        </div>
-      
     </div>
   </body>
 </html>

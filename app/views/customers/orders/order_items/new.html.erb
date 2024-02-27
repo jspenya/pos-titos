@@ -1,0 +1,15 @@
+<h3 class="underline">Add Items to your Order</h3>
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="unit">
+      <%= link_to product.name, customer_orders_path(product),
+      data: { turbo_frame: "_top" }, class: 'unit-title' %>
+        <div class = "unit_actions",>
+           <%= link_to "Add Product", edit_customer_path(product), class: "btn btn-warning" %>
+        </div>
+    </div>
+  <% end %>
+</div> 
+
+
+

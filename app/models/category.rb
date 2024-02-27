@@ -8,10 +8,10 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-  has_many :products, dependent: :destroy
+  has_many :products, dependent: :destroy, strict_loading: true
   validates :name, presence: true
 
-  scope :ordered, -> { order(id: :desc) }
+
 
   # This is a shorter way to write the broadcast callbacks (create, update, destroy)
   broadcasts_to ->(category) { "categories" }, inserts_by: :prepend
