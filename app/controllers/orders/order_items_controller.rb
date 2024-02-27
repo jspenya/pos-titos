@@ -40,7 +40,7 @@ module Orders
     private
 
     def set_order_item
-      @order_item = OrderItem.includes(:order_items).find(params[:id])
+      @order_item = OrderItem.find(params[:id])
     end
 
     def order_items_params

@@ -9,16 +9,23 @@ module Customers
       def new
         @products = Product.available
       end
-      def show; end
 
       def create
         @order_item = @order.order_items.build(order_item_params)
 
         if @order_item.save
           respond_to do |format|
-            format.turbo_stream do
-              turbo_render_created_item
-            end
+            format.turbo_stream { turbo_render_order_items }
+          end
+        end
+      end
+
+      def destroy
+        @order_item = @order.order_items.where(product_id: params[:product_id]).first
+
+        if @order_item.destroy
+          respond_to do |format|
+            format.turbo_stream { turbo_render_order_items }
           end
         end
       end
@@ -30,7 +37,8 @@ module Customers
       end
 
       def set_order
-        @order = Order.find(params[:order_id])
+        @customer = Customer.includes(:orders).find(params[:customer_id])
+        @order = @customer.orders.includes(:order_items).find(params[:order_id])
       end
     end
   end

@@ -1,12 +1,16 @@
 <% @grouped_similar_items_in_order.each do |product, count| %>
   <div class="card mb-3" id="order_item_product_<%= product.id %>">
     <div class="card-body">
-      <h5 class="card-title"><%= product.name %></h5>
-      <p class="card-text">Count: <%= count %></p>
-      <p class="card-text">Total: <%= product.price * count %></p>
+      <div class="d-flex" style="align-items:center;">
+        <div>
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text">Count: <%= count %></p>
+          <p class="card-text">Total: <%= product.price * count %></p>
+        </div>
+        <div style="right:0;position:absolute;">
+          <%= link_to "Delete", customer_order_order_item_path(@customer, @order, @order_items.last, product_id: product.id), data: { turbo_method: :delete }, class: "btn btn-warning", style: "margin-right:1em;" %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>
-
-
-
