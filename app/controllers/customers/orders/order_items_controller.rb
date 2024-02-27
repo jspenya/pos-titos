@@ -23,10 +23,10 @@ module Customers
       def destroy
         @order_item = @order.order_items.where(product_id: params[:product_id]).first
 
-        if @order_item.destroy
-          respond_to do |format|
-            format.turbo_stream { turbo_render_order_items }
-          end
+        @order_item.destroy!
+
+        respond_to do |format|
+          format.turbo_stream { turbo_render_order_items }
         end
       end
 
