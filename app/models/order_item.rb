@@ -19,7 +19,7 @@
 #  fk_rails_...  (product_id => products.id)
 #
 class OrderItem < ApplicationRecord
-  belongs_to :product, dependent: :destroy
+  belongs_to :product
   validates :product, presence: true
   belongs_to :order
 

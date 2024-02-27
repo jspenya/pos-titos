@@ -3,7 +3,7 @@ module Customers
     module Renderable
       extend ActiveSupport::Concern
 
-      def turbo_render_created_item
+      def turbo_render_order_items
         total_order_amount
         @grouped_similar_items_in_order ||= grouped_similar_items_in_order
 
@@ -35,6 +35,7 @@ module Customers
       def grouped_similar_items_in_order
         similar_items_in_order.group(:product).count
       end
+
       def total_order_amount
         @order_items = @order.order_items.includes(:product)
         @total_order_amount = @order.order_items.includes(:product).sum("products.price")
