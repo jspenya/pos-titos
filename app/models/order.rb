@@ -25,6 +25,7 @@ class Order < ApplicationRecord
   belongs_to :user
   belongs_to :customer
   has_many :order_items, dependent: :destroy, strict_loading: true
+  has_many :transactions, dependent: :destroy
 
   enum :status, {in_progress: 0, done: 2}, default: :in_progress
 
