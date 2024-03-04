@@ -1,5 +1,6 @@
 class Checkout_Order
     def initialize 
+        #test
         @customer = Customer.includes(:orders).find(params[:customer_id])
         @order = @customer.orders.includes(:order_items).find(params[:order_id])
         @total_order_amount = @order.order_items.includes(:product).sum("products.price")
