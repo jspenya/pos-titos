@@ -1,6 +1,8 @@
-<div class="card mt-3">
-  <div class="card-body">
-    <h5 class="card-title">Total Amount</h5>
-    <p class="card-text">Total: <%= @total_order_amount %></p>
+<% if @total_order_amount > 0 %>
+  <div class="card mt-3 mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Total Amount</h5>
+      <p class="card-text">Total: <%= @total_order_amount %></p>
+    </div>
   </div>
-</div>
+<% end %>
