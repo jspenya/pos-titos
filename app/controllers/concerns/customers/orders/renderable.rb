@@ -6,9 +6,17 @@ module Customers
       def turbo_render_order_items
         total_order_amount
         @grouped_similar_items_in_order ||= grouped_similar_items_in_order
+        # binding.break
 
         unless @order_item.previous_changes[:id].blank?
-          render_turbo_append
+          render turbo_stream: [
+            turbo_stream.append("order_item",
+              partial: "customers/orders/order_item",
+              locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order }),
+            turbo_stream.update("order_total", partial: "customers/orders/total_amount",
+              locals: { total_order_amount: @total_order_amount }),
+            turbo_stream.remove("no_order_items")
+          ]
 
           return
         end
@@ -21,6 +29,15 @@ module Customers
             turbo_stream.update("order_total", partial: "customers/orders/total_amount",
               locals: { total_order_amount: @total_order_amount })
           ]
+        elsif !similar_items_in_order.exists? && !@order_item.persisted?
+          # binding.break
+          # turbo_remove = @order.order_items.exists? ? "" : turbo_stream.remove("order_total")
+          render turbo_stream: [
+            turbo_stream.remove("order_item_product_#{@order_item.product_id}"),
+            turbo_stream.update("order_total", partial: "customers/orders/total_amount",
+              locals: { total_order_amount: @total_order_amount })
+          ]
+          # turbo_stream.replace("order_item_product_#{@order_item.product_id}", "Foo!")
         else
           render_turbo_append
         end
