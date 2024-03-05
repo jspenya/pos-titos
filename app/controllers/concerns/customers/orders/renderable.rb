@@ -60,7 +60,7 @@ module Customers
 
       def render_turbo_append
         render turbo_stream: [
-          turbo_stream.append("order_item",
+          turbo_stream.prepend("order_item",
             partial: "customers/orders/order_item",
             locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order }),
           turbo_stream.update("order_total", partial: "customers/orders/total_amount",

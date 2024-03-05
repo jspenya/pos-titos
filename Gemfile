@@ -81,3 +81,4 @@ gem "devise", "~> 4.9"
 gem "pundit"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'workflow', '~> 1.2'

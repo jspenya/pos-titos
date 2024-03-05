@@ -3,6 +3,7 @@
     <div>
       <p>Total Amount</p>
       <b class="total-amount"><%= number_to_currency(@total_order_amount, unit: "₱") %></b>
+      <%= link_to "Checkout", order_order_item_path(@order), data: { turbo_method: :patch }, class: "btn btn-warning", style: "margin-right:1em;" %>
     </div>
   </div>
 <% end %>

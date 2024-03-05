@@ -22,7 +22,10 @@ module Customers
         end
       end
     end
-
+    def update
+      @order_items = @order.order_items.includes(:product)
+      @total_order_amount = @order.order_items.includes(:product).sum("products.price")
+    end
     private
 
     def set_similar_items_in_order
