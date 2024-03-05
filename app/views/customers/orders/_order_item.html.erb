@@ -2,8 +2,13 @@
   <div class="card mb-1 order-item" id="order_item_product_<%= product.id %>">
     <div class="">
       <div class="d-flex" style="align-items:center;">
-        <div>
-          <h5 class="card-title"><%= product.name %> x <%= count %></h5>
+        <div style="display:flex;">
+          <div>
+            <h5 class="card-title"><%= shortify product.name %></h5>
+          </div>
+          <div style="right:0;position:absolute;margin-right:5rem;">
+            <h5>× <%= count %></h5>
+          </div>
         </div>
         <div style="right:0;position:absolute;">
           <%= link_to customer_order_order_item_path(@customer, @order, @order_items.last, product_id: product.id), data: { turbo_method: :delete }, class: "btn btn-warning", style: "margin-right:1em;" do %>

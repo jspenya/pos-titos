@@ -1,0 +1,25 @@
+<script id="hb-order-item" type="text/x-handlebars-compile">
+  <table class="table table-responsive table-borderless">
+  <thead>
+    <tr>
+      <td class="checkout-item--name"><b>Name</b></td>
+      <td class="checkout-item--currency"><b>Price</b></td>
+      <td class="checkout-item--center"><b>Qty</b></td>
+      <td class="checkout-item--currency"><b>Subtotal</b></td>
+    </tr>
+  </thead>
+  {{#each order_items}}
+  <tbody>
+    <tr>
+      <td class="checkout-item--name">{{product_name}}</td>
+      <td class="checkout-item--currency">{{formatCurrency product_price}}</td>
+      <td class="checkout-item--center">{{count}}</td>
+      <td class="checkout-item--currency">{{formatCurrency subtotal}}</td>
+    </tr>
+  </tbody>
+  {{/each}}
+  </table>
+  <div class="order-item-total">
+    <b>{{itemsTotal order_items}}</b>
+  </div>
+</script>

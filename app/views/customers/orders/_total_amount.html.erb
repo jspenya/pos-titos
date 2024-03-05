@@ -1,9 +1,12 @@
 <% if @total_order_amount > 0 %>
   <div class="mt-3 mb-3">
-    <div>
-      <p>Total Amount</p>
-      <b class="total-amount"><%= number_to_currency(@total_order_amount, unit: "₱") %></b>
-      <%= link_to "Checkout", order_order_item_path(@order), data: { turbo_method: :patch }, class: "btn btn-warning", style: "margin-right:1em;" %>
+    <div class="d-flex" style="align-items:center;">
+      <div>
+        <p>Total Amount</p>
+        <b class="total-amount"><%= number_to_currency(@total_order_amount, unit: "₱") %></b>
+      </div>
     </div>
+    <%= link_to "Print Bill", "#", class: "btn btn-warning" %>
+    <%= link_to "Settle", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#checkout_modal", order_id: @order.id } %>
   </div>
 <% end %>

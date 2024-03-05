@@ -1,0 +1,16 @@
+<div data-controller="order-items" class="modal fade" id="checkout_modal" data-url="<%= customer_order_order_items_path(@customer, @order) %>" data-name="checkout">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <div class="modal-title m-auto">
+          <b>Checkout Order</b>
+        </div>
+      </div>
+      <div class="modal-body" id="checkout_modal_body"></div>
+      <div class="modal-footer">
+        <%= link_to "Print Bill", "#", class: "btn btn-warning" %>
+        <%= link_to "Pay", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#pay_order" } %>
+      </div>
+    </div>
+  </div>
+</div>

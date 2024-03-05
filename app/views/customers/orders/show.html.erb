@@ -1,5 +1,9 @@
+<%= render "customers/orders/checkout_modal", order_items: @order_items %>
+<%= render "customers/orders/pay_order" %>
+<%= render "customers/orders/handlebars/order_item" %>
+
 <div class="mt-5">
-  <h3 class="mb-4">Product Menu</h3>
+  <h3 class="mb-4">Products Menu</h3>
   <div class="row">
     <div class="col-md-10">
       <%= render "customers/orders/product", products: @allProducts %>
@@ -11,6 +15,7 @@
         </div>
         <div class="scrollable-section">
           <!-- Scrollable content goes here -->
+          <h5>In Cart:</h5>
           <div id="order_item">
             <% if @order_items.exists? %>
               <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>

@@ -15,7 +15,8 @@ module Customers
               locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order }),
             turbo_stream.update("order_total", partial: "customers/orders/total_amount",
               locals: { total_order_amount: @total_order_amount }),
-            turbo_stream.remove("no_order_items")
+            turbo_stream.remove("no_order_items"),
+            # turbo_stream.update("checkout_modal", partial: "customers/orders/checkout_modal", locals: { order_items: @order.order_items }),
           ]
 
           return
@@ -27,7 +28,7 @@ module Customers
               partial: "customers/orders/order_item",
               locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order }),
             turbo_stream.update("order_total", partial: "customers/orders/total_amount",
-              locals: { total_order_amount: @total_order_amount })
+              locals: { total_order_amount: @total_order_amount }),
           ]
         elsif !similar_items_in_order.exists? && !@order_item.persisted?
           # binding.break
@@ -35,12 +36,14 @@ module Customers
           render turbo_stream: [
             turbo_stream.remove("order_item_product_#{@order_item.product_id}"),
             turbo_stream.update("order_total", partial: "customers/orders/total_amount",
-              locals: { total_order_amount: @total_order_amount })
+              locals: { total_order_amount: @total_order_amount }),
           ]
           # turbo_stream.replace("order_item_product_#{@order_item.product_id}", "Foo!")
         else
           render_turbo_append
         end
+
+        turbo_stream.update("checkout_modal", partial: "customers/orders/checkout_modal", locals: { order_items: @order.order_items })
       end
 
       private
@@ -64,7 +67,8 @@ module Customers
             partial: "customers/orders/order_item",
             locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order }),
           turbo_stream.update("order_total", partial: "customers/orders/total_amount",
-            locals: { total_order_amount: @total_order_amount })
+            locals: { total_order_amount: @total_order_amount }),
+          # # turbo_stream.update("checkout_modal", partial: "customers/orders/checkout_modal", locals: { order_items: @order.order_items }),
         ]
       end
     end
