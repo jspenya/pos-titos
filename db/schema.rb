@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_080107) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_05_064011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_080107) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "payment_method", default: 0
+    t.decimal "cash_tendered"
+    t.string "workflow_state", default: "pending"
+    t.bigint "order_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_payments_on_customer_id"
+    t.index ["order_id"], name: "index_payments_on_order_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
@@ -86,15 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_080107) do
     t.bigint "order_item_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["order_item_id"], name: "index_products_on_order_item_id"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "transaction_type"
-    t.integer "workflow_state"
-    t.bigint "order_id", null: false
-    t.index ["order_id"], name: "index_transactions_on_order_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,7 +121,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_29_080107) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "customers"
+  add_foreign_key "payments", "orders"
+  add_foreign_key "payments", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "order_items"
-  add_foreign_key "transactions", "orders"
 end

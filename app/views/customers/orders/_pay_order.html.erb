@@ -1,0 +1,15 @@
+<div data-controller="order-items" class="modal fade" id="pay_order" data-url="<%= customer_order_order_items_path(@customer, @order) %>" data-name="pay_order">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <div class="modal-title m-auto">
+          <b>Pay Order</b>
+        </div>
+      </div>
+      <div class="modal-body" id="pay_order_modal_body"></div>
+      <div class="modal-footer">
+        <%= link_to "Confirm Payment", "#", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

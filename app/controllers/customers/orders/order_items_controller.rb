@@ -6,6 +6,16 @@ module Customers
 
       include Customers::Orders::Renderable
 
+      def index
+        @order_items = @order.order_items
+        grouped_order_items = @order_items.group_by(&:product_id)
+
+        respond_to do |format|
+          format.html
+          format.json { render json: OrderItemBuilder.new(grouped_order_items).as_json }
+        end
+      end
+
       def new
         @products = Product.available
       end

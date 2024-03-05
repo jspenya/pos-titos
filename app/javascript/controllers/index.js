@@ -9,3 +9,12 @@ application.register("dropzone", DropzoneController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import OrderItemsController from "./order_items_controller"
+application.register("order-items", OrderItemsController)
+
+import TestController from "./test_controller"
+application.register("test", TestController)
