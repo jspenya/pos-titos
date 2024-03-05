@@ -1,5 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
   primary_abstract_class
 
-  scope :ordered, -> { order(id: :desc) }
+  scope :ordered, -> { order(created_at: :asc) }
 end

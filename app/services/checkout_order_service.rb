@@ -1,20 +1,25 @@
-class Checkout_Order
-    def initialize 
-        #test
-        @customer = Customer.includes(:orders).find(params[:customer_id])
-        @order = @customer.orders.includes(:order_items).find(params[:order_id])
-        @total_order_amount = @order.order_items.includes(:product).sum("products.price")
-    end
+class CashTenderedNotEnoughError < StandardError; end
 
-    private
+class CheckoutOrderService
+  def initialize(payment_params)
+    @payment_params = payment_params
+  end
 
-    def create_transaction
-        @transaction=Transaction.create!(@order.order)
+  def call
+    raise CashTenderedNotEnoughError if @payment_params[:cash_tendered].to_f < @payment_params[:order_total].to_f
 
-    end
+    update_order_status
+    create_payment_record
+  end
 
-    def update_order_status
-        @order.update!(status: 'done', total_amount: @total_order_amount)
-    end
-    
+  private
+
+  def create_payment_record
+    Payment.create!(@payment_params)
+  end
+
+  def update_order_status
+    order = Order.find(@payment_params[:order_id])
+    order.update!(status: 2, total_amount: @payment_params[:order_total].to_f)
+  end
 end

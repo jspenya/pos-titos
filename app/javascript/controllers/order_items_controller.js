@@ -13,6 +13,11 @@ export default class extends Controller {
         .then((order_items) => {
           const template = Handlebars.compile(document.getElementById("hb-order-item").innerHTML);
           document.getElementById(`${modalName}_modal_body`).innerHTML = template({ order_items: order_items });
+
+          const paymentOrderTotal = document.getElementById("payment_order_total")
+          if (paymentOrderTotal != null) {
+            paymentOrderTotal.value = order_items.reduce((sum, item) => sum + parseFloat(item.subtotal), 0);
+          }
         });
     });
   }
