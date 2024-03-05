@@ -33,7 +33,7 @@ module Customers
 
     def set_orders
       @customer = Customer.includes(:orders).find(params[:customer_id])
-      @orders = @customer.orders.includes(:order_items)
+      @orders = @customer.orders.where(user_id: current_user.id).includes(:order_items)
     end
   end
 end

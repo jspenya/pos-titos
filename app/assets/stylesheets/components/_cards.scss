@@ -10,10 +10,25 @@
   justify-content: center;
 
   img {
-    min-width: 250px;
-    min-height: 250px;
-    max-height: 250px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
   }
+}
+
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  .item {
+    box-sizing: border-box;
+  }
+}
+
+.total-amount {
+  font-size: 1.5rem;
 }
 
 @media screen and (max-width: 599px) {

@@ -1,46 +1,31 @@
-<h3 class="underline">Add Items to your Order</h3>
 <div class="mt-5">
-  <h1 class="mb-4">Product Menu</h1>
+  <h3 class="mb-4">Product Menu</h3>
   <div class="row">
     <div class="col-md-10">
-      <div class="row">
-        <% @allProducts.each do |product| %>
-          <div class="col-md-2 mb-3">
-            <div class="card order-item__card">
-              <% if product.image.attached? %>
-                <div class="card-img-top placeholder__thumb">
-                  <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
-                </div>
-              <% else %>
-                <div class="card-img-top placeholder__thumb">
-                  <%= image_tag "placeholder.png" %>
-                </div>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title"><%= product.name %></h5>
-                <p class="card-text"><span>Pcs:</span><%= product.quantity %></p>
-                <p class="card-text"><span>Price: ₱</span><%= product.price %></p>
-                <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
-                  <%= form.hidden_field :product_id, value: product.id %>
-                  <%= form.submit 'Add to Order', class: 'btn btn-primary' %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render "customers/orders/product", products: @allProducts %>
     </div>
     <div class="col-md-2">
-      <h3>Items List</h3>
-      <div id="order_item">
-        <% if @order_items.exists? %>
-          <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
-        <% else %>
-          <p>You currently have no items in this order.</p>
-        <% end %>
-      </div>
-      <div id="order_total">
-        <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+      <div class="items-sidebar">
+        <div class="top-section">
+          <!-- Content before the scrollable section -->
+        </div>
+        <div class="scrollable-section">
+          <!-- Scrollable content goes here -->
+          <div id="order_item">
+            <% if @order_items.exists? %>
+              <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
+            <% else %>
+              <p>You currently have no items in this order.</p>
+            <% end %>
+          </div>
+          <!-- Add more order items as needed -->
+        </div>
+        <div class="bottom-section">
+          <!-- Content after the scrollable section -->
+          <div id="order_total">
+            <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
