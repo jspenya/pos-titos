@@ -32,4 +32,8 @@ class Payment < ApplicationRecord
   }, suffix: "payment"
 
   include PaymentWorkflow
+
+  after_commit :complete!, on: :create
+
+  attr_accessor :order_total
 end

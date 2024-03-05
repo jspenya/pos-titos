@@ -7,6 +7,8 @@
       </div>
     </div>
     <%= link_to "Print Bill", "#", class: "btn btn-warning" %>
-    <%= link_to "Settle", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#checkout_modal", order_id: @order.id } %>
+    <% unless @order.done? %>
+      <%= link_to "Settle", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#checkout_modal", order_id: @order.id } %>
+    <% end %>
   </div>
 <% end %>

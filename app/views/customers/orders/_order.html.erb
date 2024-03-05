@@ -1,11 +1,12 @@
 <%= render "orders/form", order: Order.new, customer: @customer %>
-<% orders.each do |order| %>
-  <div class="unit text-left">
-    <div class="product-details">
+<div class="items-container text-left">
+  <% orders.each do |order| %>
+    <div class="unit item product-details" style="padding:1em;">
       <%= link_to customer_order_path(customer, order), class: 'unit-title',
           data: { turbo_frame: "_top" } do %>
-        <%= order.name %> - <%= order.status.titleize %>
+        <%= order_name(order) %>
+        <%= order_status_badge(order) %>
       <% end %>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

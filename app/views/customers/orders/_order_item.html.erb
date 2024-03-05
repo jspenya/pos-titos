@@ -11,8 +11,10 @@
           </div>
         </div>
         <div style="right:0;position:absolute;">
-          <%= link_to customer_order_order_item_path(@customer, @order, @order_items.last, product_id: product.id), data: { turbo_method: :delete }, class: "btn btn-warning", style: "margin-right:1em;" do %>
-            <%= bootstrap_icon "trash", fill: "red" %>
+          <% unless @order.done? %>
+            <%= link_to customer_order_order_item_path(@customer, @order, @order_items.last, product_id: product.id), data: { turbo_method: :delete }, class: "btn btn-warning", style: "margin-right:1em;" do %>
+              <%= bootstrap_icon "trash", fill: "red" %>
+            <% end %>
           <% end %>
         </div>
       </div>

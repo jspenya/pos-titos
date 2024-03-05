@@ -1,6 +1,6 @@
 module Customers
   class OrdersController < OrdersController
-    before_action :set_orders, only: [:index, :show]
+    before_action :set_orders, only: [:index, :show, :create]
     before_action :set_similar_items_in_order, only: [:show]
     def index; end
 
@@ -22,10 +22,24 @@ module Customers
         end
       end
     end
+
+    def create
+      @order = Order.new(orders_params)
+
+      if @order.save
+        respond_to do |format|
+          format.html { redirect_to customer_order_path(@customer, @order), notice: "Order was successfully created." }
+        end
+      else
+        render :new, status: :unprocessable_entity
+      end
+    end
+
     def update
       @order_items = @order.order_items.includes(:product)
       @total_order_amount = @order.order_items.includes(:product).sum("products.price")
     end
+
     private
 
     def set_similar_items_in_order
@@ -36,7 +50,7 @@ module Customers
 
     def set_orders
       @customer = Customer.includes(:orders).find(params[:customer_id])
-      @orders = @customer.orders.where(user_id: current_user.id).includes(:order_items)
+      @orders = @customer.orders.ordered.where(user_id: current_user.id).includes(:order_items)
     end
   end
 end

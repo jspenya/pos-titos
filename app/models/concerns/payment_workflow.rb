@@ -7,10 +7,11 @@ module PaymentWorkflow
     workflow do
       state :pending do
         event :process, :transitions_to => :processing
+        event :complete, :transitions_to => :completed
       end
 
       state :processing do
-        event :compelte, :transitions_to => :completed
+        event :complete, :transitions_to => :completed
       end
 
       state :completed
