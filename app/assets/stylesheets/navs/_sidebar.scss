@@ -189,6 +189,34 @@
   }
 }
 
+.items-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+
+  .scrollable-section {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 800px;
+  }
+
+  .order-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .top-section,
+  .bottom-section {
+    padding: 20px;
+    margin-bottom: 1rem;
+  }
+}
+
 @include media-breakpoint-up(md) {
   .sidebar {
     width: $sidebar-base-width !important;
