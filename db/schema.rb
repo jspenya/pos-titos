@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_05_064011) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_06_110848) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -102,6 +102,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_05_064011) do
     t.index ["order_item_id"], name: "index_products_on_order_item_id"
   end
 
+  create_table "stocks", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "order_item_id"
+    t.integer "quantity"
+    t.string "location"
+    t.string "last_checked_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_item_id"], name: "index_stocks_on_order_item_id"
+    t.index ["product_id"], name: "index_stocks_on_product_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -126,4 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_05_064011) do
   add_foreign_key "payments", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "order_items"
+  add_foreign_key "stocks", "order_items"
+  add_foreign_key "stocks", "products"
 end
