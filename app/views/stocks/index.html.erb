@@ -1,0 +1,22 @@
+<h1>Stocks</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Product</th>
+      <th scope="col">Last Checked By</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+      <tr>
+        <th scope="row"><%= stock.id %></th>
+        <td><%= stock.product&.name %></td>
+        <td><%= stock.last_checked_by %></td>
+        <td><%= stock.quantity %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -36,10 +36,17 @@ class Product < ApplicationRecord
 
   scope :available, -> { where.not("quantity <= 0") }
 
+  after_commit :add_to_stock, on: :create
+
   # This is a shorter way to write the broadcast callbacks (create, update, destroy)
-  broadcasts_to ->(product) { "products" }, inserts_by: :prepend
+  # broadcasts_to ->(product) { "products" }, inserts_by: :prepend
 
   # Broadcast updates to products/show also
-  after_update_commit -> { broadcast_replace_later_to "product", partial: "products/show_product",
-    locals: { product: self }, target: "product_#{self.id}" }
+  # after_update_commit -> { broadcast_replace_later_to "product", partial: "products/show_product",
+    # locals: { product: self }, target: "product_#{self.id}" }
+  private
+
+  def add_to_stock
+    Stock.create(product_id: self.id, )
+  end
 end
