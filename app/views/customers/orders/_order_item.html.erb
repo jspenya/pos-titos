@@ -1,10 +1,10 @@
 <% @grouped_similar_items_in_order.each do |product, count| %>
-  <div class="card mb-1 order-item" id="order_item_product_<%= product.id %>">
+  <div class="unit mb-1 order-item" id="order_item_product_<%= product.id %>">
     <div class="">
       <div class="d-flex" style="align-items:center;">
         <div style="display:flex;">
           <div>
-            <h5 class="card-title"><%= shortify product.name %></h5>
+            <h5 class="card-title text-sm"><%= shortify product.name %></h5>
           </div>
           <div style="right:0;position:absolute;margin-right:5rem;">
             <h5>× <%= count %></h5>

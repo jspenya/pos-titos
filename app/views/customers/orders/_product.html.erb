@@ -1,23 +1,27 @@
 <div class="items-container">
-  <% products.each do |product| %>
-    <div class="item">
-      <% if product.image.attached? %>
-        <div class="card-img-top placeholder__thumb">
-          <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
-        </div>
-      <% else %>
-        <div class="card-img-top placeholder__thumb">
-          <%= image_tag "placeholder.png" %>
-        </div>
-      <% end %>
-      <div class="card-body text-center">
-        <h5 class="card-title"><%= product.name %></h5>
-        <p class="card-text"><span></span><%= number_to_currency(product.price, unit: "₱") %></p>
-        <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
-          <%= form.hidden_field :product_id, value: product.id %>
-          <%= form.submit 'Add', class: 'btn btn-primary' %>
+  <div class="row">
+    <% products.each do |product| %>
+      <div class="unit mr-2 col-lg-2 col-md-3 mb-4" style= "background-color: hsl(0, 0%, 93.3%); margin: 10px;">
+        <% if product.image.attached? %>
+          <div class="text-center card-img-top placeholder__thumb" >
+            <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top img-fluid" alt="<%= product.name %>">
+          </div>
+        <% else %>
+          <div class="text-center card-img-top placeholder__thumb">
+            <%= image_tag "placeholder.png", class: "card-img-top img-fluid" %>
+          </div>
         <% end %>
+        <div class="card-body text-center">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text"><span></span><%= number_to_currency(product.price, unit: "₱") %></p>
+          <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
+            <%= form.hidden_field :product_id, value: product.id %>
+              <% unless @order.done? %>
+                <%= form.submit 'Add', class: 'btn btn-primary' %>
+              <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
