@@ -1,12 +1,14 @@
 <%= render "orders/form", order: Order.new, customer: @customer %>
 <div class="items-container text-left">
-  <% orders.each do |order| %>
-    <div class="unit item product-details" style="padding:1em;">
-      <%= link_to customer_order_path(customer, order), class: 'unit-title',
-          data: { turbo_frame: "_top" } do %>
-        <%= order_name(order) %>
-        <%= order_status_badge(order) %>
-      <% end %>
-    </div>
-  <% end %>
+  <div class = "row">
+    <% orders.each do |order| %>   
+      <div class="unit col-lg-2 col-md-3 mb-4 mr-2 product-details" style="padding:1em; margin: 10px;">
+        <%= link_to customer_order_path(customer, order), class: 'unit-title',
+            data: { turbo_frame: "_top" } do %>
+            <%= order_name(order) %>
+          <%= order_status_badge(order) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
