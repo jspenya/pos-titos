@@ -1,5 +1,5 @@
 <%= turbo_frame_tag product do %>
-  <div class="unit text-left">
+  <div class="unit item product-details">
     <div class="image-container">
       <%= link_to product_path(product), data: { turbo_frame: "_top" } do %>
         <% if product.image.attached? %>

@@ -10,6 +10,14 @@
         <%= form_with(model: product, class: "w-100", local: true, multipart: true) do |form| %>
           <div class="form__group">
             <dt>
+              <%= form.label :is_ingredient, 'Ingredient?' %>
+              <%= form.check_box :is_ingredient %>
+            </dt>
+            <dd style="font-size:11px;">Check the box if this product is an ingredient.</dd>
+          </div>
+
+          <div class="form__group">
+            <dt>
               <%= form.label :name %>
             </dt>
             <%= form.text_field :name, class: "form__input", value: product&.name %>
