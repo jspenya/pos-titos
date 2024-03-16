@@ -22,5 +22,7 @@
 #  fk_rails_...  (product_id => products.id)
 #
 class Stock < ApplicationRecord
+  has_paper_trail
+
   belongs_to :product
 end

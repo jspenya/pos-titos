@@ -78,6 +78,7 @@ end
 
 gem "bootstrap-icons-helper", "~> 2.0", ">= 2.0.1"
 gem "devise", "~> 4.9"
+gem "paper_trail"
 gem "pundit"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'

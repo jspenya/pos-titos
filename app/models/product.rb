@@ -3,6 +3,7 @@
 # Table name: products
 #
 #  id            :bigint           not null, primary key
+#  is_ingredient :boolean          default(FALSE)
 #  name          :string
 #  price         :decimal(, )
 #  quantity      :integer
@@ -23,6 +24,8 @@
 #
 class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
+  has_one :stock, dependent: :destroy
+
   belongs_to :category
 
   has_one_attached :image do |attachable|
@@ -47,6 +50,6 @@ class Product < ApplicationRecord
   private
 
   def add_to_stock
-    Stock.create(product_id: self.id, )
+    Stock.create(product_id: self.id)
   end
 end

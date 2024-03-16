@@ -3,6 +3,7 @@
 # Table name: products
 #
 #  id            :bigint           not null, primary key
+#  is_ingredient :boolean          default(FALSE)
 #  name          :string
 #  price         :decimal(, )
 #  quantity      :integer
