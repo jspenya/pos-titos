@@ -1,0 +1,6 @@
+<tr id="<%= dom_id(stock) %>">
+  <th><%= stock.id %></th>
+  <td><%= link_to stock.product&.name, stock_version_path(stock) %></td>
+  <td><%= stock.quantity %></td>
+  <td><%= stock.versions.count %></td>
+</tr>

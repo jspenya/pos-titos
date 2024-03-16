@@ -1,0 +1,12 @@
+<tr id="<%= dom_id(stock) %>">
+  <th><%= stock.id %></th>
+  <td><%= stock.product&.name %></td>
+  <td><%= stock.quantity %></td>
+  <td>
+    <div class="d-flex gap-2">
+      <%= button_to (bootstrap_icon "plus-circle", fill: "green"), stock_path(stock, stock: {increment_quantity: 1}), method: :patch, class: "btn btn-sm btn-light" %>
+      <%= button_to (bootstrap_icon "dash-circle", fill: "red"), stock_path(stock, stock: {decrement_quantity: 1}), method: :patch, class: "btn btn-sm btn-light" %>
+      <%= link_to "Update", "#", data: { bs_toggle: "modal", bs_target: "#update_stock_#{stock.id}_modal", stock_id: stock.id }, class: "btn btn-sm btn-dark" %>
+    </div>
+  </td>
+</tr>

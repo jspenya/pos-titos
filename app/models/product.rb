@@ -6,7 +6,6 @@
 #  is_ingredient :boolean          default(FALSE)
 #  name          :string
 #  price         :decimal(, )
-#  quantity      :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  category_id   :bigint           not null
@@ -34,10 +33,9 @@ class Product < ApplicationRecord
   end
 
   validates :name, presence: true
-  validates :quantity, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, unless: :is_ingredient?
 
-  scope :available, -> { where.not("quantity <= 0") }
+  scope :available, -> { joins(:stock).where.not("stocks.quantity <= 0") }
 
   after_commit :add_to_stock, on: :create
 

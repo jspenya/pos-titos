@@ -1,0 +1,14 @@
+<div data-controller="stocks" class="modal fade" id="update_stock_<%= stock.id %>_modal" data-url="<%= stock_path(stock) %>" data-name="stock">
+  <div class="modal-dialog">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <div class="modal-title m-auto">
+          <b>Update Stock</b>
+        </div>
+      </div>
+      <%= render "form", stock: stock %>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

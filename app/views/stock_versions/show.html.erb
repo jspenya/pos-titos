@@ -1,0 +1,18 @@
+<h4><%= @stock.product.name %>'s History</h4>
+
+<div class="row">
+  <% @versions.each do |version| %>
+    <div class="unit">
+      <div>
+        <h6>
+          <%= event_badge(version.event) %>
+          <b>
+            <%= version.created_at.strftime('%l:%M%P on %d/%m/%Y') %>
+          </b>
+        </h6>
+        <dt>Quantity: <%= version.object&.dig('quantity') %></dt>
+        <dd>Actor: <%= whodunnit_user(version.whodunnit)&.email %></dd>
+      </div>
+    </div>
+  <% end %>
+</div>

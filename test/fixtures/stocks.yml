@@ -5,7 +5,7 @@
 #  id              :bigint           not null, primary key
 #  last_checked_by :string
 #  location        :string
-#  quantity        :integer
+#  quantity        :integer          default(0)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  order_item_id   :bigint

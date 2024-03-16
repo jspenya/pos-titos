@@ -5,12 +5,11 @@
       <th scope="col">ID</th>
       <th scope="col">Product</th>
       <th scope="col">Quantity</th>
-      <th scope="col">Actions</th>
+      <th scope="col">Histories</th>
     </tr>
   </thead>
   <tbody id="stocks">
     <% @stocks.each do |stock| %>
-      <%= render "update_stock_modal", stock: stock %>
       <%= render "stock", stock: stock %>
     <% end %>
   </tbody>

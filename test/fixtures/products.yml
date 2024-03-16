@@ -6,7 +6,6 @@
 #  is_ingredient :boolean          default(FALSE)
 #  name          :string
 #  price         :decimal(, )
-#  quantity      :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  category_id   :bigint           not null
