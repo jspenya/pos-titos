@@ -77,17 +77,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_110848) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "payment_method", default: 0
-    t.decimal "cash_tendered"
-    t.string "workflow_state", default: "pending"
+    t.integer "type"
+    t.integer "workflow_state"
     t.bigint "order_id", null: false
-    t.bigint "customer_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_payments_on_customer_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
-    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -133,9 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_06_110848) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "users"
-  add_foreign_key "payments", "customers"
   add_foreign_key "payments", "orders"
-  add_foreign_key "payments", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "order_items"
   add_foreign_key "stocks", "order_items"
