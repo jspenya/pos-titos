@@ -6,7 +6,7 @@
         <b class="total-amount"><%= number_to_currency(@total_order_amount, unit: "₱") %></b>
       </div>
     </div>
-    <%= link_to "Print Bill", "#", class: "btn btn-warning" %>
+    <%= link_to "Print Bill", customer_order_path(@order, format: :pdf) , class: "btn btn-warning" %>
     <% unless @order.done? %>
       <%= link_to "Settle", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#checkout_modal", order_id: @order.id } %>
     <% end %>
