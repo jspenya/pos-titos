@@ -23,8 +23,13 @@ class OrderItem < ApplicationRecord
   validates :product, presence: true
   belongs_to :order
 
-  after_commit :decrement_product_quantity, on: :create
-  after_destroy :increment_product_quantity
+  after_commit :decrement_quantity, on: :create
+  after_destroy :increment_quantity
+
+  scope :done, -> { joins(:order).where("orders.status = 2")}
+  scope :created_this_week, -> {
+    where("order_items.created_at >= ? AND order_items.created_at <= ?", Date.today.beginning_of_week, Date.today.end_of_day)
+  }
 
   def self.similar_items_in_order(order_id = nil, product_id = nil)
     scope = self
@@ -35,10 +40,11 @@ class OrderItem < ApplicationRecord
 
   private
 
-  def increment_product_quantity
-    product.increment!(:quantity, by = 1, touch: nil)
+  def increment_quantity
+    product.stock.increment!(:quantity, by = 1, touch: nil)
   end
-  def decrement_product_quantity
-    product.decrement!(:quantity, by = 1, touch: nil)
+
+  def decrement_quantity
+    product.stock.decrement!(:quantity, by = 1, touch: nil)
   end
 end

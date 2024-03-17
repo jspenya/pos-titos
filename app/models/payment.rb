@@ -35,5 +35,7 @@ class Payment < ApplicationRecord
 
   after_commit :complete!, on: :create
 
+  scope :paid, -> { where(workflow_state: 'completed')}
+
   attr_accessor :order_total
 end

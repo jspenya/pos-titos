@@ -29,6 +29,8 @@ class Order < ApplicationRecord
 
   enum :status, {in_progress: 0, done: 2}, default: :in_progress
 
+  scope :done, -> { where(status: 2)}
+
   after_commit :generate_name, on: :create
 
   private

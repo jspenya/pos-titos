@@ -1,0 +1,24 @@
+<h1>Charts</h1>
+
+<div class="my-5">
+  <div class="products-sold mt-3">
+    <h4>Sales (All-time)</h4>
+    <%= line_chart sales_all_time_charts_path, xtitle: "Date", ytitle: "Sales (in Php)" %>
+  </div>
+  <div class="products-sold mt-3">
+    <h4>Products Sold (All-time)</h4>
+    <%= column_chart products_sold_charts_path %>
+  </div>
+  <div class="products-sold-this-week mt-3">
+    <h4>Products Sold (This Week)</h4>
+    <%= column_chart products_sold_this_week_charts_path %>
+  </div>
+  <div class="orders-chart mt-3">
+    <h4>Orders</h4>
+    <%= line_chart orders_charts_path %>
+  </div>
+  <div class="orders-chart mt-3">
+    <h4>Table Orders vs Individual Customer Orders</h4>
+    <%= pie_chart order_types_charts_path %>
+  </div>
+</div>

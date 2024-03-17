@@ -77,12 +77,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_163713) do
   end
 
   create_table "payments", force: :cascade do |t|
-    t.integer "type"
-    t.integer "workflow_state"
+    t.integer "payment_method", default: 0
+    t.decimal "cash_tendered"
+    t.string "workflow_state", default: "pending"
     t.bigint "order_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_payments_on_customer_id"
     t.index ["order_id"], name: "index_payments_on_order_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -99,13 +104,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_163713) do
 
   create_table "stocks", force: :cascade do |t|
     t.bigint "product_id", null: false
-    t.bigint "order_item_id"
     t.integer "quantity", default: 0
     t.string "location"
     t.string "last_checked_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_item_id"], name: "index_stocks_on_order_item_id"
     t.index ["product_id"], name: "index_stocks_on_product_id"
   end
 
@@ -127,7 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_163713) do
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.jsonb "object"
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
@@ -138,9 +141,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_16_163713) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "customers"
   add_foreign_key "payments", "orders"
+  add_foreign_key "payments", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "order_items"
-  add_foreign_key "stocks", "order_items"
   add_foreign_key "stocks", "products"
 end

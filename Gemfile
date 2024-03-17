@@ -77,7 +77,9 @@ group :test do
 end
 
 gem "bootstrap-icons-helper", "~> 2.0", ">= 2.0.1"
+gem "chartkick"
 gem "devise", "~> 4.9"
+gem "groupdate"
 gem "paper_trail"
 gem "pundit"
 gem 'wicked_pdf'

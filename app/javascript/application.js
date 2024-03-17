@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import "chartkick/chart.js"
 
 Handlebars.registerHelper('formatCurrency', function (value) {
   return `₱ ${parseFloat(value).toFixed(2)}`;

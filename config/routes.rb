@@ -27,6 +27,15 @@ Rails.application.routes.draw do
   resources :payments
   resources :stocks
   resources :stock_versions
+  resources :charts do
+    collection do
+      get :sales_all_time
+      get :products_sold
+      get :products_sold_this_week
+      get :orders
+      get :order_types
+    end
+  end
 
   get "customer_orders/tables", to: "customer_orders#tables"
   get "customer_orders/individual_orders", to: "customer_orders#individual_orders"
