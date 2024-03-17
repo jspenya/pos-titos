@@ -1,0 +1,33 @@
+
+<%
+=begin%>
+ <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
+ <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %> 
+<%
+=end%>
+
+<h1>Receipt</h1>
+<p>Order: <%= @order.name %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Qty</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grouped_similar_items_in_order.each do |product, count| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+        <td style="text-align: right;"><strong>Total:</strong></td>
+        <td><%= number_to_currency(@total_order_amount, unit: "₱")%></td>
+    </tr>
+  </tfoot>
+</table>

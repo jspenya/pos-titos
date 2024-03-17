@@ -13,12 +13,13 @@ module Customers
         format.html
         format.pdf do
           render pdf: "testing",
-          template: 'customers/orders/show',
+          template: 'customers/orders/print_receipt',
           formats: [:html],
-          pagesize: "letter",
           layout: "pdf",
           encoding: "UTF-8",
-          viewport_size: '1280x1024'
+          disposition: 'inline',
+          zoom: 5
+
         end
       end
     end

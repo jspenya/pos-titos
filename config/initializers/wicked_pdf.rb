@@ -14,10 +14,9 @@
   }
   WickedPdf.config.merge!({
   layout: "pdf",
-  orientation: "Landscape", # Portrait
+  orientation: "Portrait", # Portrait
   page_size: "A4",
   lowquality: true,
-  zoom: 1,
   dpi: 75
 })
   # Path to the wkhtmltopdf executable: This usually isn't needed if using
