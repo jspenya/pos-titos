@@ -1,0 +1,8 @@
+<tr id="<%= dom_id(payment) %>">
+  <th><%= payment.created_at.strftime('%l:%M %p on %A %b %m, %Y') %></th>
+  <td><%= payment.customer&.name %></td>
+  <td><%= payment.user&.email %></td>
+  <td><%= payment.payment_method.titleize %></td>
+  <td class="text-end"><%= price_to_peso(payment.cash_tendered) %></td>
+  <td class="text-end"><%= price_to_peso(payment.order.total_amount) %></td>
+</tr>

@@ -1,17 +1,24 @@
 import { Controller } from "@hotwired/stimulus";
-import flatpickr from "flatpickr";
 
 // Connects to data-controller="flatpickr"
 export default class extends Controller {
+  static targets = ["form"]
+
   connect() {
-
-    flatpickr(".fp_date_time", {
+    flatpickr(".flatpickr_start_time", {
       enableTime: true,
-      dateFormat: "Y-m-d H:i",
-    }
-    );
+      dateFormat: "F j, Y h:i K"
+    })
 
-    flatpickr(".fp_date");
+    flatpickr(".flatpickr_end_time", {
+      enableTime: true,
+      dateFormat: "F j, Y h:i K"
+    })
+  }
 
+  search(event) {
+    // event.preventDefault()
+    // Rails.fire(this.formTarget, "submit")
+    console.log("Form Submitted")
   }
 }

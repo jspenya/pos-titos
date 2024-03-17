@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
+
 import DropzoneController from "./dropzone_controller"
 application.register("dropzone", DropzoneController)
 

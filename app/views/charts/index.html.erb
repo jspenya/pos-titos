@@ -7,11 +7,11 @@
   </div>
   <div class="products-sold mt-3">
     <h4>Products Sold (All-time)</h4>
-    <%= column_chart products_sold_charts_path %>
+    <%= column_chart products_sold_charts_path, colors: ['#B2BEB5'] %>
   </div>
   <div class="products-sold-this-week mt-3">
     <h4>Products Sold (This Week)</h4>
-    <%= column_chart products_sold_this_week_charts_path %>
+    <%= column_chart products_sold_this_week_charts_path, colors: ['#B2BEB5'] %>
   </div>
   <div class="orders-chart mt-3">
     <h4>Orders</h4>
@@ -19,6 +19,6 @@
   </div>
   <div class="orders-chart mt-3">
     <h4>Table Orders vs Individual Customer Orders</h4>
-    <%= pie_chart order_types_charts_path %>
+    <%= pie_chart order_types_charts_path, colors: ['#B2BEB5', '#6082B6'] %>
   </div>
 </div>

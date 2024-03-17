@@ -1,4 +1,19 @@
 class PaymentsController < ApplicationController
+  def index
+    @payments = Payment.paid
+
+    if params[:start_time].present? && params[:end_time].present?
+      @payments = @payments.created_between(params[:start_time], params[:end_time])
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(@payments)
+      end
+    end
+  end
+
   def new
     @payment = Payment.new
   end
@@ -6,12 +21,6 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
 
-    # TO DO:
-    # Use the checkout_order_service
-    # After payment is succcessful, hide the "Settle" button
-    #
-    # Others:
-    # Display only orders that are within today?
     CheckoutOrderService.new(payment_params).call
     flash[:notice] = "Payment successful!"
 

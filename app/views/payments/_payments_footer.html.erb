@@ -1,0 +1,12 @@
+<tfoot id="payments_footer">
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="text-end">
+      <h4><b><%= price_to_peso @payments.includes(:order).sum("orders.total_amount") %></b></h4>
+    </td>
+  </tr>
+</tfoot>

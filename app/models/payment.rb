@@ -26,6 +26,9 @@
 #
 class Payment < ApplicationRecord
   belongs_to :order
+  belongs_to :customer
+  belongs_to :user
+
   enum :payment_method, {
     cash: 0,
     gcash: 1
@@ -36,6 +39,7 @@ class Payment < ApplicationRecord
   after_commit :complete!, on: :create
 
   scope :paid, -> { where(workflow_state: 'completed')}
+  scope :created_between, ->(start_date, end_date) { where("payments.created_at >= ? AND payments.created_at <= ?", start_date, end_date) }
 
   attr_accessor :order_total
 end

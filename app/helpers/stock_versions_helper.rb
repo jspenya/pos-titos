@@ -6,7 +6,7 @@ module StockVersionsHelper
   def event_badge(event_name)
     case event_name
     when "create"
-      content_tag(:span, event_name.upcase, class: "badge bg-success")
+      content_tag(:span, event_name.upcase, class: "badge bg-danger")
     when "update"
       content_tag(:span, event_name.upcase, class: "badge bg-warning")
     end

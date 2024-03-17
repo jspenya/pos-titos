@@ -6,7 +6,16 @@ class StockVersionsController < ApplicationController
   end
 
   def show
-    @versions = @stock.versions.sort { |v| v.created_at }
+    @versions = @stock.versions
+
+    if params[:start_time].present? && params[:end_time].present?
+      @versions = @versions.where(
+        "versions.created_at >= ? AND versions.created_at <= ?",
+        params[:start_time], params[:end_time]
+      )
+    end
+
+    @versions = @versions.sort { |v| v.created_at }
   end
 
   private

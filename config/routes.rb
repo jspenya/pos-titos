@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "sales", to: "payments#index"
   get "customer_orders/tables", to: "customer_orders#tables"
   get "customer_orders/individual_orders", to: "customer_orders#individual_orders"
 end

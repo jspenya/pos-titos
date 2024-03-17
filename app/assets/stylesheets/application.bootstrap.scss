@@ -459,3 +459,9 @@ label[for="nav-footer-toggle"] {
 .hidden {
   display: none;
 }
+
+tfoot,
+tfoot th,
+tfoot td {
+  border: none;
+}
