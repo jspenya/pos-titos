@@ -24,10 +24,14 @@
       </tr>
     <% end %>
   </tbody>
-  <tfoot>
-    <tr>
+</table>
+  <table>
+    <tfoot>
+      <tr>
         <td style="text-align: right;"><strong>Total:</strong></td>
         <td><%= number_to_currency(@total_order_amount, unit: "₱")%></td>
-    </tr>
-  </tfoot>
-</table>
+      </tr>
+    </tfoot>
+  </table>
+
+

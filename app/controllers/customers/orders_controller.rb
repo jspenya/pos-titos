@@ -19,7 +19,6 @@ module Customers
           encoding: "UTF-8",
           disposition: 'inline',
           zoom: 5
-
         end
       end
     end
