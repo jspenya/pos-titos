@@ -18,8 +18,7 @@ module Customers
           layout: "pdf",
           encoding: "UTF-8",
           disposition: 'inline',
-          zoom: 2
-
+          zoom: 5
         end
       end
     end
