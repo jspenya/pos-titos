@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import FlatpickrController from "./flatpickr_controller"
-application.register("flatpickr", FlatpickrController)
-
 import DropzoneController from "./dropzone_controller"
 application.register("dropzone", DropzoneController)
+
+import FlatpickrController from "./flatpickr_controller"
+application.register("flatpickr", FlatpickrController)
 
 import FormsController from "./forms_controller"
 application.register("forms", FormsController)
@@ -21,6 +21,9 @@ application.register("modal", ModalController)
 
 import OrderItemsController from "./order_items_controller"
 application.register("order-items", OrderItemsController)
+
+import StocksController from "./stocks_controller"
+application.register("stocks", StocksController)
 
 import TestController from "./test_controller"
 application.register("test", TestController)

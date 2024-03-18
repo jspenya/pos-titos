@@ -6,7 +6,11 @@
   <h3 class="mb-4"><%= @customer.name %> | Order - <%= @order.name %></h3>
   <div class="row">
     <div class="col-md-10">
-      <%= render "customers/orders/product", products: @allProducts %>
+      <% if @allProducts.exists? %>
+        <%= render "customers/orders/product", products: @allProducts %>
+      <% else %>
+        <dd>There are currently no products in stock.</dd>
+      <% end %>
     </div>
     <div class="col-md-2">
       <div class="items-sidebar">

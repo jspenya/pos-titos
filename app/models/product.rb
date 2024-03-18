@@ -35,7 +35,10 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, unless: :is_ingredient?
 
-  scope :available, -> { joins(:stock).where.not("stocks.quantity <= 0") }
+  scope :available, -> {
+    joins(:stock).where.not("stocks.quantity <= 0")
+                 .where(is_ingredient: false)
+  }
 
   after_commit :add_to_stock, on: :create
 
