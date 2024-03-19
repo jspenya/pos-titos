@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   def index
-
     @products = Product.ordered
     authorize @products
   end

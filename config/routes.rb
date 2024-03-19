@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     root to: 'customer_orders#tables', as: :cashier_root
   end
 
+  authenticated :user, ->(user) { user.stockman? } do
+    root to: 'stocks#index', as: :stockman_root
+  end
+
   devise_for :users
   root "products#index"
 
