@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(payment) %>">
-  <th><%= payment.created_at.strftime('%l:%M %p on %A %b %m, %Y') %></th>
+  <th><%= payment.created_at.strftime('%l:%M %p on %a %b %-d, %Y') %></th>
   <td><%= payment.customer&.name %></td>
   <td><%= payment.user&.email %></td>
   <td><%= payment.payment_method.titleize %></td>

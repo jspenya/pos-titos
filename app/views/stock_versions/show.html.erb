@@ -22,7 +22,7 @@
     <div>
       <h6>
         <span class="badge bg-success">CURRENT VALUE</span>
-        <b><%= @stock.updated_at.strftime('%l:%M %p on %A %b %m, %Y') %></b>
+        <b><%= @stock.updated_at.strftime('%l:%M %p on %a %b %-d, %Y') %></b>
       </h6>
       <dt>Quantity: <%= @stock.quantity %></dt>
     </div>
@@ -34,7 +34,7 @@
         <h6>
           <%= event_badge(version.event) %>
           <b>
-            <%= version.created_at.strftime('%l:%M %p on %A %b %m, %Y') %>
+            <%= version.created_at.strftime('%l:%M %p on %a %b %-d, %Y') %>
           </b>
         </h6>
         <dt>Quantity: <%= version.object&.dig("quantity") %></dt>
