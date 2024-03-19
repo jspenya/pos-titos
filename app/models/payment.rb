@@ -33,6 +33,7 @@ class Payment < ApplicationRecord
 
   scope :paid, -> { where(workflow_state: 'completed')}
   scope :created_between, ->(start_date, end_date) { where("payments.created_at >= ? AND payments.created_at <= ?", start_date, end_date) }
+  scope :created_today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
 
   attr_accessor :order_total
 end

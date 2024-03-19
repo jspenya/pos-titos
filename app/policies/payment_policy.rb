@@ -5,7 +5,7 @@ class PaymentPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.cashier?
-        scope.where(user_id: user.id)
+        scope.created_today.where(user_id: user.id)
       end
     end
   end
