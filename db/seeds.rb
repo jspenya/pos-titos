@@ -38,7 +38,7 @@ users = User.first_or_create([
 categories = ['egm wings', 'dahon plates', 'drinks','rice toppings','pizza',
               'finger food','appetizer','rice','alcohol']
 categories.each do |category_name|
-  Category.create!(name: category_name)
+  Category.first_or_create(name: category_name)
 end
 
 products = [
@@ -110,5 +110,5 @@ products = [
 ]
 products.each do |product_attrs|
   category = Category.where(name: product_attrs[:category_name]).first
-  Product.create!(name: product_attrs[:name], price: product_attrs[:price], category_id: category.id)
+  Product.first_or_create(name: product_attrs[:name], price: product_attrs[:price], category_id: category.id)
 end
