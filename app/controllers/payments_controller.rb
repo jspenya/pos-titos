@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
   def index
-    @payments = Payment.paid
+    @payments = PaymentPolicy::Scope.new(current_user, Payment.paid).resolve
 
     if params[:start_time].present? && params[:end_time].present?
       @payments = @payments.created_between(params[:start_time], params[:end_time])
@@ -16,10 +16,14 @@ class PaymentsController < ApplicationController
 
   def new
     @payment = Payment.new
+
+    authorize @payment
   end
 
   def create
     @payment = Payment.new(payment_params)
+
+    authorize @payment
 
     CheckoutOrderService.new(payment_params).call
     flash[:notice] = "Payment successful!"

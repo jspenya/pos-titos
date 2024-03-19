@@ -1,7 +1,7 @@
 <h1>Sales</h1>
 <%= form_with(url: payments_path, method: :get, data: { controller: "flatpickr", flatpickr_target: "form", turbo: true }) do |form| %>
   <div class="row mb-5">
-    <div class="offset-md-6 col-md-3">
+    <div class="col-md-3">
       <div class="input-group">
         <%= form.datetime_field :start_time, class: "flatpickr_start_time form-control", placeholder: "Select start date" %>
       </div>
@@ -9,9 +9,11 @@
     <div class="col-md-3">
       <div class="input-group">
         <%= form.datetime_field :end_time, class: "flatpickr_end_time form-control", placeholder: "Select end date", data: { action: "change->flatpickr#search" } %>
-        <%= form.submit "Submit", class: "btn btn-sm btn-dark" %>
-        <%= button_to "Clear Filters", payments_path, data: { turbo_frame: "_top" }, class: "btn btn-sm btn-warning rounded" %>
       </div>
+    </div>
+    <div class="col-md-3">
+      <%= form.submit "Submit", class: "btn btn-dark" %>
+      <%= button_to "Clear Filters", payments_path, data: { turbo_frame: "_top" }, class: "btn btn-warning rounded" %>
     </div>
   </div>
 <% end %>

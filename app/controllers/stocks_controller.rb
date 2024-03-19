@@ -3,11 +3,16 @@ class StocksController < ApplicationController
 
   def index
     @stocks = Stock.ordered
+    authorize @stocks
   end
 
-  def show; end
+  def show
+    authorize @stock
+  end
 
   def update
+    authorize @stock
+
     @stock.update!(permitted_params)
 
     respond_to do |format|

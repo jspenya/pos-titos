@@ -3,9 +3,13 @@ class StockVersionsController < ApplicationController
 
   def index
     @stocks = Stock.ordered
+
+    authorize @stocks
   end
 
   def show
+    authorize @stock
+
     @versions = @stock.versions
 
     if params[:start_time].present? && params[:end_time].present?

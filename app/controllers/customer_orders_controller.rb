@@ -13,7 +13,7 @@ class CustomerOrdersController < ApplicationController
 
   def new
     table = Customer.table_customer.find(params[:table])
-      
+
     @customer_order = table.customer_orders.build
   end
 
