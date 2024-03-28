@@ -6,10 +6,10 @@
   <h3 class="mb-4"><%= @customer.name %> | Order - <%= @order.name %></h3>
   <div class="row">
     <div class="col-md-8">
-      <div class = "buttons pb-2">
+      <div class = "buttons p-2">
         <% @categories.each do |category| %>
           <button type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
-            <%= link_to category.name, customer_order_path(category_id: category.id),{:style=>"color:#fff;text-decoration: none;"} %>
+            <%= link_to category[1], customer_order_path(category_id: category[0]),{:style=>"color:#fff;text-decoration: none;"} %>
           </button>
         <% end %>
       </div>

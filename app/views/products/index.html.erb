@@ -6,7 +6,7 @@
 <div class = "buttons p-2">
   <% @categories.each do |category| %>
     <button type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
-      <%= link_to category.name, products_path(category_id: category.id),{:style=>"color:#fff;text-decoration: none;"} %>
+      <%= link_to category[1], products_path(category_id: category[0]),{:style=>"color:#fff;text-decoration: none;"} %>
     </button>
   <% end %>
 </div>
