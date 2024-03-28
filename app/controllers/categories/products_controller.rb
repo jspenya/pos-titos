@@ -4,6 +4,7 @@ module Categories
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
+      @categories = Category.all
       @products = @category.products.ordered
   
     end

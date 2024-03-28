@@ -5,7 +5,14 @@
 <div class="mt-5">
   <h3 class="mb-4"><%= @customer.name %> | Order - <%= @order.name %></h3>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
+      <div class = "buttons pb-2">
+        <% @categories.each do |category| %>
+          <button type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+            <%= link_to category.name, customer_order_path(category_id: category.id),{:style=>"color:#fff;text-decoration: none;"} %>
+          </button>
+        <% end %>
+      </div>
       <% if @allProducts.exists? %>
         <%= render "customers/orders/product", products: @allProducts %>
       <% else %>

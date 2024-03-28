@@ -3,7 +3,13 @@
 <%= link_to "New Product", new_product_path, class: "btn btn-dark",
       data: { turbo_frame: dom_id(Product.new) } %>
 <%= turbo_frame_tag dom_id(Product.new) %>
-
+<div class = "buttons p-2">
+  <% @categories.each do |category| %>
+    <button type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
+      <%= link_to category.name, products_path(category_id: category.id),{:style=>"color:#fff;text-decoration: none;"} %>
+    </button>
+  <% end %>
+</div>
 <%= turbo_frame_tag "products" do %>
   <div class="items-container">
     <%= render @products %>
