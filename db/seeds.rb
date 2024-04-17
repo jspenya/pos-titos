@@ -43,10 +43,10 @@ end
 
 products = [
   { name: 'Buffalo Wings (8pcs)', price: 259, category_name: 'egm wings' },
-  { name: 'Garlic Parmesan', price: 259, category_name: 'egm wings' },
-  { name: 'CDO Wings', price: 259, category_name: 'egm wings' },
-  { name: 'Salted Egg', price: 259, category_name: 'egm wings' },
-  { name: 'Barbecue', price: 259, category_name: 'egm wings' },
+  { name: 'Garlic Parmesan', price: 259, category_name: 'egm wings'  },
+  { name: 'CDO Wings', price: 259, category_name: 'egm wings'  },
+  { name: 'Salted Egg', price: 259, category_name: 'egm wings'  },
+  { name: 'Barbecue', price: 259, category_name: 'egm wings'  },
   { name: '2pcs old fashion fried chicken', price: 219, category_name: 'dahon plates' },
   { name: '2pcs dahon spicy chicken', price: 249, category_name: 'dahon plates' },
   { name: 'CDO Wings', price: 219, category_name: 'dahon plates' },
@@ -109,6 +109,6 @@ products = [
   # Add more products as needed
 ]
 products.each do |product_attrs|
-  category = Category.find_or_create_by(name: product_attrs[:category_name])
-  Product.find_or_create_by(name: product_attrs[:name], price: product_attrs[:price], category_id: category.id)
+  category = Category.where(name: product_attrs[:category_name]).first
+  Product.first_or_create(name: product_attrs[:name], price: product_attrs[:price], category_id: category.id)
 end

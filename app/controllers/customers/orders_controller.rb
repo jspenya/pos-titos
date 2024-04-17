@@ -5,11 +5,7 @@ module Customers
     def index; end
 
     def show
-      @categories=Category.pluck(:id, :name)
-      @products = Product.available
-      if params[:category_id].present?
-        @products = @products.where(category_id: params[:category_id])
-      end
+      @allProducts = Product.available
       @order_items = @order.order_items.includes(:product)
       @total_order_amount = @order.order_items.includes(:product).sum("products.price")
       @last_order_item = @order.order_items.last
@@ -23,12 +19,6 @@ module Customers
           encoding: "UTF-8",
           disposition: 'inline',
           zoom: 5
-        end
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update("products", partial: "customers/orders/products",
-            locals: { products: @products})
-          ]
         end
       end
     end

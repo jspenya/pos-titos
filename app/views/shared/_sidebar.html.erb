@@ -17,7 +17,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <% if policy(Category).index? %>
+    <% if policy(Category).show? %>
       <li class="nav-item">
         <div class="nav-link collapsed">
           <%= link_to categories_path do %>
