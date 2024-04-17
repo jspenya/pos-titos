@@ -2,7 +2,14 @@
 
 <%= link_to "New Product", new_product_path, class: "btn btn-dark",
       data: { turbo_frame: dom_id(Product.new) } %>
+
 <%= turbo_frame_tag dom_id(Product.new) %>
+
+<div class = "buttons p-2">
+  <% @categories.each do |category_id, category_name| %>
+    <%= link_to category_name, products_path(category_id: category_id), class: "btn btn-dark", data: { turbo_stream: true } %>
+  <% end %>
+</div>
 
 <%= turbo_frame_tag "products" do %>
   <div class="items-container">

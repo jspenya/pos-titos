@@ -1,0 +1,23 @@
+<% stocks.each do |stock| %>
+  <div class = "unit item product-details">
+    <%= render "update_stock_modal", stock: stock %>
+    <div id="<%= dom_id(stock) %>" class="stock-container">
+      <div>
+        <%= stock_badge(stock)%>
+      </div>
+      <div>
+        <dd><%= stock.product&.name %></dd>
+        <div>
+          <b><%= stock.quantity %></b>
+        </div>
+      </div>
+      <div>
+        <div class="d-flex gap-2">
+          <%= button_to (bootstrap_icon "plus-circle", fill: "green"), stock_path(stock, stock: {increment_quantity: 1}), method: :patch, class: "btn btn-sm btn-light" %>
+          <%= button_to (bootstrap_icon "dash-circle", fill: "red"), stock_path(stock, stock: {decrement_quantity: 1}), method: :patch, class: "btn btn-sm btn-light" %>
+          <%= link_to "Update", "#", data: { bs_toggle: "modal", bs_target: "#update_stock_#{stock.id}_modal", stock_id: stock.id }, class: "btn btn-sm btn-dark" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
