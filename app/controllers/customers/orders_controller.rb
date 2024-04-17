@@ -5,7 +5,11 @@ module Customers
     def index; end
 
     def show
-      @allProducts = Product.available
+      @categories = Category.pluck(:id, :name)
+      @products = Product.available
+      if params[:category_id].present?
+        @products = @products.where(category_id: params[:category_id])
+      end
       @order_items = @order.order_items.includes(:product)
       @total_order_amount = @order.order_items.includes(:product).sum("products.price")
       @last_order_item = @order.order_items.last
