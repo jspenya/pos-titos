@@ -8,6 +8,16 @@ class ProductsController < ApplicationController
       @products = Product.where(category_id: Arel.sql(params[:category_id]))
     end
     authorize @products
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("products",
+          partial: "products/products",
+          locals: { products: @products }
+        )
+      end
+    end
   end
 
   def show; end

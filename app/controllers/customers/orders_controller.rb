@@ -6,9 +6,9 @@ module Customers
 
     def show
       @categories=Category.pluck(:id, :name)
-      @allProducts = Product.available
+      @products = Product.available
       if params[:category_id].present?
-        @allProducts = @allProducts.where(category_id: params[:category_id])
+        @products = @products.where(category_id: params[:category_id])
       end
       @order_items = @order.order_items.includes(:product)
       @total_order_amount = @order.order_items.includes(:product).sum("products.price")
@@ -23,6 +23,12 @@ module Customers
           encoding: "UTF-8",
           disposition: 'inline',
           zoom: 5
+        end
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update("products", partial: "customers/orders/products",
+            locals: { products: @products})
+          ]
         end
       end
     end

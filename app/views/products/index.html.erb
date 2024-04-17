@@ -5,13 +5,8 @@
 <%= turbo_frame_tag dom_id(Product.new) %>
 <div class = "buttons p-2">
   <% @categories.each do |category| %>
-    <button type="button" class="btn btn-dark" data-toggle="button" aria-pressed="false" autocomplete="off">
-      <%= link_to category[1], products_path(category_id: category[0]),{:style=>"color:#fff;text-decoration: none;"} %>
-    </button>
+    <%= link_to category[1], products_path(category_id: category[0]), class: "btn btn-dark", data: { turbo_stream: true } %>
   <% end %>
 </div>
-<%= turbo_frame_tag "products" do %>
-  <div class="items-container">
-    <%= render @products %>
-  </div>
-<% end %>
+
+<%= render "products", products: @products %>
