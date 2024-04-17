@@ -5,12 +5,14 @@
 <div class="mt-5">
   <h3 class="mb-4"><%= @customer.name %> | Order - <%= @order.name %></h3>
   <div class="row">
-    <div class="col-md-10">
-      <% if @allProducts.exists? %>
-        <%= render "customers/orders/product", products: @allProducts %>
-      <% else %>
-        <dd>There are currently no products in stock.</dd>
-      <% end %>
+    <div class="col-md-8">
+      <div class = "buttons p-2">
+        <% @categories.each do |category| %>
+          <%= link_to category[1], customer_order_path(category_id: category[0]),
+            class: "btn btn-dark", data: { turbo_stream: true } %>
+        <% end %>
+      </div>
+      <%= render "customers/orders/products", products: @products %>
     </div>
     <div class="col-md-2">
       <div class="items-sidebar">

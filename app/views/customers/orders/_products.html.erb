@@ -1,0 +1,31 @@
+<%= turbo_frame_tag "products" do %>
+  <% if products.exists? %>
+    <div class="items-container" id="products">
+      <% products.each do |product| %>
+        <div class="item">
+          <% if product.image.attached? %>
+            <div class="card-img-top placeholder__thumb">
+              <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+            </div>
+          <% else %>
+            <div class="card-img-top placeholder__thumb">
+              <%= image_tag "placeholder.png" %>
+            </div>
+          <% end %>
+          <div class="card-body text-center">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text"><span></span><%= number_to_currency(product.price, unit: "₱") %></p>
+            <% unless @order.done? %>
+              <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
+                <%= form.hidden_field :product_id, value: product.id %>
+                <%= form.submit 'Add', class: 'btn btn-primary' %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <dd>There are currently no products in stock.</dd>
+  <% end %>
+<% end %>
