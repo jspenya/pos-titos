@@ -18,10 +18,10 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
     <%= render "shared/flash" %>
+    <%= render "shared/navbar" %>
     <main>
-      <%= render "shared/sidebar" %>
+      <%= render "shared/sidebar" if user_signed_in? %>
       <div class="container mt-2">
         <div class="row">
           <div class="col-md-12">

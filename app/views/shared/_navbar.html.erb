@@ -12,8 +12,10 @@
       <% if user_signed_in? %>
         <%= button_to 'Log out', destroy_user_session_path, class: 'btn btn-outline-danger', method: :delete %>
       <% else %>
-        <%= button_to 'Log in', new_user_session_path, class: 'btn btn-dark', method: :get%>
-        <%= button_to 'Sign up', new_user_registration_path, class: 'btn btn-light ml-3', method: :get %>
+        <div class="d-flex gap-2">
+          <%= button_to 'Log in', new_user_session_path, class: 'btn btn-dark', method: :get%>
+          <%= button_to 'Sign up', new_user_registration_path, class: 'btn btn-light ml-3', method: :get %>
+        </div>
       <% end %>
     </div>
   </header>
