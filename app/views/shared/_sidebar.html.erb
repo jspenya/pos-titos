@@ -1,127 +1,95 @@
-
-<% if user_signed_in? %>
-
-  <div id="nav-bar">
-
-  <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <%= link_to root_path, id: "nav-title" do %>
-      <div class="sidebar-brand d-flex align-items-center justify-content-center">
-        <div class="sidebar-brand-text mx-3"><%= current_user.username %></div>
-      </div>
-    <% end %>
-    <hr class="sidebar-divider my-2">
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Interface
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <% if policy(Category).show? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to categories_path do %>
-            <i class="fas fa-fw fa-box"></i>
-            <span>Categories</span>
-          <% end %>
-        </div>
+<%= render "shared/sidebar_icons" %>
+<div class="d-flex flex-column flex-shrink-0" style="width: 7.5rem;">
+  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+    <li class="nav-item">
+      <a href="<%= root_path %>" class="nav-link active py-3 border-bottom" aria-current="page" title="Home"
+        data-bs-toggle="tooltip" data-bs-placement="right">
+        <svg class="bi" width="16" height="16" role="img" aria-label="Home">
+          <use xlink:href="#home" />
+        </svg>
+      </a>
+    </li>
+    <% if policy(Category).index? %>
+      <li>
+        <a href="<%= categories_path %>" class="nav-link py-3 border-bottom" title="Categories" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <i class="fas fa-fw fa-box"></i>
+          <p>Categories</p>
+        </a>
       </li>
     <% end %>
-
-    <!-- Nav Item - Utilities Collapse Menu -->
     <% if policy(Product).index? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to products_path do %>
-            <i class="fas fa-fw fa-box"></i>
-            <span>Products</span>
-          <% end %>
-        </div>
+      <li>
+        <a href="<%= products_path %>" class="nav-link py-3 border-bottom" title="Products" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <svg class="bi" width="16" height="16" role="img" aria-label="Products">
+            <use xlink:href="#grid" />
+          </svg>
+          <p>Products</p>
+        </a>
       </li>
     <% end %>
-
     <% if policy(:customer_order).tables? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to customer_orders_tables_path do %>
-            <i class="fas fa-user-plus"></i>
-            <span>Customer Tables</span>
-          <% end %>
-        </div>
+      <li>
+        <a href="<%= customer_orders_tables_path %>" class="nav-link py-3 border-bottom" title="Table Orders" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <svg class="bi" width="16" height="16" role="img" aria-label="Table Orders">
+            <use xlink:href="#table" />
+          </svg>
+          <p>Tables</p>
+        </a>
       </li>
     <% end %>
-
     <% if policy(:customer_order).individual_orders? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to customer_orders_individual_orders_path do %>
-            <i class="fas fa-user-plus"></i>
-            <span>Individual Customer</span>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-
-    <% if policy(Stock).index? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to stocks_path do %>
-            <i class="fas fa-clipboard"></i>
-            <span>Stocks</span>
-          <% end %>
-        </div>
+      <li>
+        <a href="<%= customer_orders_individual_orders_path %>" class="nav-link py-3 border-bottom" title="Customer Orders" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <svg class="bi" width="16" height="16" role="img" aria-label="Customer Orders">
+            <use xlink:href="#people-circle" />
+          </svg>
+          Customer Orders
+        </a>
       </li>
     <% end %>
     <% if policy(Stock).index? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to stock_versions_path do %>
-            <i class="fas fa-clipboard"></i>
-            <span>Stocks History</span>
-          <% end %>
-        </div>
+      <li>
+        <a href="<%= stocks_path %>" class="nav-link py-3 border-bottom" title="Stocks" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <svg class="bi" width="16" height="16" role="img" aria-label="Stocks">
+            <use xlink:href="#collection" />
+          </svg>
+          <p>Stocks</p>
+        </a>
+      </li>
+    <% end %>
+    <% if policy(Stock).index? %>
+      <li>
+        <a href="<%= stock_versions_path %>" class="nav-link py-3 border-bottom" title="Stocks" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <svg class="bi" width="16" height="16" role="img" aria-label="Stocks">
+            <use xlink:href="#cpu-fill" />
+          </svg>
+          <p>Stock Logs</p>
+        </a>
       </li>
     <% end %>
     <% if policy(:chart).index? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to charts_path do %>
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
-          <% end %>
-        </div>
+      <li>
+        <a href="<%= charts_path %>" class="nav-link py-3 border-bottom" title="Charts" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <p>Charts</p>
+        </a>
       </li>
     <% end %>
-
-    <% if policy(:payment).index? %>
-      <li class="nav-item">
-        <div class="nav-link collapsed">
-          <%= link_to sales_path do %>
-            <i class="fas fa-fw fa-money-bill"></i>
-            <span>Sales</span>
-          <% end %>
-        </div>
+    <% if policy(:chart).index? %>
+      <li>
+        <a href="<%= sales_path %>" class="nav-link py-3 border-bottom" title="Sales" data-bs-toggle="tooltip"
+          data-bs-placement="right">
+          <i class="fas fa-fw fa-money-bill"></i>
+          <p>Sales</p>
+        </a>
       </li>
     <% end %>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-    <!-- Nav Item - Charts -->
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item hidden">
-      <a class="nav-link" href="tables.html">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span>
-      </a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
   </ul>
-  <!-- End of Sidebar -->
-  </div>
-
-
-
-  <% end %>
+</div>

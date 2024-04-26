@@ -1,0 +1,26 @@
+<div class="d-flex flex-column flex-shrink-0 orders-sidebar shadow">
+  <div class="items-sidebar">
+    <div class="top-section">
+      <!-- Content before the scrollable section -->
+    </div>
+    <div class="scrollable-section">
+      <!-- Scrollable content goes here -->
+      <h4 style="font-weight:700;">Cart</h4>
+      <hr class="mb-4">
+      <div id="order_item">
+        <% if @order_items.exists? %>
+          <%= render 'customers/orders/order_item', locals: { grouped_similar_items_in_order: @grouped_similar_items_in_order } %>
+        <% else %>
+          <p>You currently have no items in this order.</p>
+        <% end %>
+      </div>
+      <!-- Add more order items as needed -->
+    </div>
+    <div class="bottom-section">
+      <!-- Content after the scrollable section -->
+      <div id="order_total">
+        <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+      </div>
+    </div>
+  </div>
+</div>

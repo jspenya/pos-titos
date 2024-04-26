@@ -5,7 +5,7 @@ module Customers
     def index; end
 
     def show
-      @categories = Category.pluck(:id, :name)
+      @categories = Category.available.pluck(:id, :name)
       @products = Product.available
       if params[:category_id].present?
         @products = @products.where(category_id: params[:category_id])

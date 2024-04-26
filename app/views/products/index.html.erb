@@ -1,14 +1,19 @@
-<h1>Products</h1>
+<%= title "Products" %>
 
-<%= link_to "New Product", new_product_path, class: "btn btn-dark",
-      data: { turbo_frame: dom_id(Product.new) } %>
+<%= link_to new_product_path, class: "btn btn-dark",
+      data: { turbo_frame: dom_id(Product.new) } do %>
+  <%= bootstrap_icon "plus-circle", fill: "black", style: "margin-right:0.5rem;" %> New Product
+<% end %>
 
 <%= turbo_frame_tag dom_id(Product.new) %>
 
-<div class = "buttons p-2">
+<div class="py-3 text-center">
   <% @categories.each do |category_id, category_name| %>
-    <%= link_to category_name, products_path(category_id: category_id), class: "btn btn-dark", data: { turbo_stream: true } %>
+    <%= link_to category_name, products_path(category_id: category_id),
+      class: "mx-1 btn btn-sm #{params[:category_id].to_i == category_id ? 'btn-dark' : 'btn-outline-dark'}",
+      data: { turbo_stream: true } %>
   <% end %>
+  <%= link_to "Clear Filters", products_path, class: "mx-1 btn btn-sm btn-outline-secondary" %>
 </div>
 
 <%= turbo_frame_tag "products" do %>
