@@ -10,4 +10,10 @@ module ApplicationHelper
       word
     end
   end
+
+  def title(text)
+    content_for :title do
+      text
+    end
+  end
 end

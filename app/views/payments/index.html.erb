@@ -1,4 +1,5 @@
-<h1>Sales</h1>
+<%= title "Sales" %>
+
 <%= form_with(url: payments_path, method: :get, data: { controller: "flatpickr", flatpickr_target: "form", turbo: true }) do |form| %>
   <div class="row mb-5">
     <div class="col-md-3">

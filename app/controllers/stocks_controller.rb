@@ -20,7 +20,7 @@ class StocksController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def update
