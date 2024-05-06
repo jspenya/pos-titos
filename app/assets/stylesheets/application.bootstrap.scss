@@ -9,6 +9,7 @@
 
 // Components
 @import "components/error_message";
+@import "components/success_message";
 @import "components/form";
 @import "components/visually_hidden";
 @import "components/turbo_progress_bar";
@@ -49,14 +50,6 @@ a {
       width: 100px;
     }
   }
-}
-
-.error-message {
-  width: 100%;
-  color: var(--color-primary);
-  background-color: var(--color-primary-bg);
-  padding: var(--space-xs);
-  border-radius: var(--border-radius);
 }
 
 .col.box {

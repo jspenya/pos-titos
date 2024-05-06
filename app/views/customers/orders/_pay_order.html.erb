@@ -8,20 +8,22 @@
       </div>
       <div class="modal-body" id="pay_order_modal_body"></div>
       <div class="modal-footer">
-        <%= form_with(model: Payment.new, url: payments_path, local: true) do |form| %>
-          <%= form.hidden_field :order_id, value: @order.id %>
-          <%= form.hidden_field :customer_id, value: @customer.id %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.hidden_field :order_total %>
+        <div id="pay_order_modal_footer">
+          <%= form_with(model: Payment.new, url: payments_path, local: true) do |form| %>
+            <%= form.hidden_field :order_id, value: @order.id %>
+            <%= form.hidden_field :customer_id, value: @customer.id %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :order_total %>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon1">₱</span>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">₱</span>
+              </div>
+              <%= form.number_field :cash_tendered, placeholder: "Enter cash tendered here", class: "form-control", aria: { label: 'Username', describedby: 'basic-addon1' } %>
+              <%= form.submit "Confirm Payment", class: "btn btn-primary" %>
             </div>
-            <%= form.number_field :cash_tendered, placeholder: "Enter cash tendered here", class: "form-control", aria: { label: 'Username', describedby: 'basic-addon1' } %>
-            <%= form.submit "Confirm Payment", class: "btn btn-primary" %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
