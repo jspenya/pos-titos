@@ -1,0 +1,9 @@
+<%# locals: cash_change_amount %>
+<% cash_change_amount = cash_change_amount || @order.payments.first.try(:cash_change_amount) %>
+<% return unless cash_change_amount %>
+
+<div class="text-right">
+  <h4>
+    <strong>Change: <%= price_to_peso(cash_change_amount) %></strong>
+  </h4>
+</div>

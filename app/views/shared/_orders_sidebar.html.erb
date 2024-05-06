@@ -20,6 +20,7 @@
       <!-- Content after the scrollable section -->
       <div id="order_total">
         <%= render 'customers/orders/total_amount', locals: { total_order_amount: @total_order_amount } %>
+        <%= render 'customers/orders/pay_order_change' %>
       </div>
     </div>
   </div>

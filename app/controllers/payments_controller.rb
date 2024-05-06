@@ -25,10 +25,19 @@ class PaymentsController < ApplicationController
 
     authorize @payment
 
-    CheckoutOrderService.new(payment_params).call
+    CheckoutOrderService.new(@payment, payment_params).call
     flash[:notice] = "Payment successful!"
 
-    redirect_to customer_orders_path(payment_params[:customer_id])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove("error-message"),
+          turbo_stream.prepend("pay_order_modal_body", partial: "shared/success_message", locals: { message: "Payment successful!" }),
+          turbo_stream.replace("pay_order_modal_footer", partial: "customers/orders/pay_order_change",
+          locals: { cash_change_amount: @payment.cash_change_amount }),
+        ]
+      end
+    end
   rescue CashTenderedNotEnoughError
     respond_to do |format|
       format.turbo_stream do
@@ -40,6 +49,12 @@ class PaymentsController < ApplicationController
   private
 
   def payment_params
-    params.require(:payment).permit(:order_id, :customer_id, :user_id, :cash_tendered, :order_total)
+    params.require(:payment).permit(
+      :order_id,
+      :customer_id,
+      :user_id,
+      :cash_tendered,
+      :order_total,
+    )
   end
 end
