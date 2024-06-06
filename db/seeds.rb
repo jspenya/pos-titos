@@ -38,7 +38,7 @@ users = User.first_or_create([
 categories = ['egm wings', 'dahon plates', 'drinks','rice toppings','pizza',
               'finger food','appetizer','rice','alcohol']
 categories.each do |category_name|
-  Category.first_or_create(name: category_name)
+  Category.find_or_create_by(name: category_name)
 end
 
 products = [
