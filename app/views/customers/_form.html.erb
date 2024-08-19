@@ -6,8 +6,10 @@
       </div>
     <% end %>
 
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+
+    <div>
+      <%= form.text_field :name, class: "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", placeholder: "Enter customer name here" %>
+    </div>
 
     <%= form.hidden_field :role, value: params[:role] %>
     <div class="unit-actions button-unit" style = "padding: 10px;">
