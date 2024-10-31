@@ -14,7 +14,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(customer_params)
+    @customer = current_user.customers.new(customer_params)
 
     if @customer.save
       respond_to do |format|

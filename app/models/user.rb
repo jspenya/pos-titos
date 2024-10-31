@@ -30,6 +30,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :username, uniqueness: true
 
+  has_many :customers, dependent: :destroy
+
   enum role: [
     :admin,
     :cashier,

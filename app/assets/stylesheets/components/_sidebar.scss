@@ -5,8 +5,10 @@ body {
   font-style: normal;
   font-variation-settings:
     "slnt" 0;
-  background-color: rgba(0, 0, 0, .05);
+  background-color: var(--color-primary-bg);
 }
+
+
 
 main {
   display: flex;
