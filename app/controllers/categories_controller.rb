@@ -49,7 +49,7 @@ class CategoriesController < ApplicationController
   def destroy
     authorize @category
     @category.destroy!
-    
+
     respond_to do |format|
       format.html { redirect_to categories_path, notice: "Category was successfully destroyed." }
       format.turbo_stream
@@ -59,7 +59,7 @@ class CategoriesController < ApplicationController
   private
 
   def set_category
-    @category = Category.find(params[:id])
+    @category = Category.includes(:products).find(params[:id])
   end
 
   def category_params
