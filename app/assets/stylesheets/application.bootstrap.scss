@@ -22,8 +22,23 @@
 // Layouts
 @import "layouts/header";
 
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+  background-color: var(--color-light);
+}
+
 a {
-  color: var(--color-primary);
+  color: var(--color-dark);
+}
+
+small {
+  color: var(--color-accent-dark);
+  font-size: var(--font-size-xs);
 }
 
 .justify-center {
@@ -117,4 +132,41 @@ tfoot td {
   justify-content: center;
   display: flex;
   flex-direction: column;
+}
+
+.welcome-text {
+  font-size: var(--font-size-xxxxl);
+  font-weight: bold;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.input {
+  padding: 0.5em 1em;
+}
+
+.input--underlined {
+  border-color: transparent transparent var(--color-dark);
+  border-bottom-style: dashed;
+  border-bottom-width: 1px;
+  border-radius: 0 !important;
+  padding: 0.2em 0;
+  caret-color: var(--color-accent-dark);
+  background-color: var(--color-light);
+  text-align: center;
+  font-size: var(--font-size-xxxl);
+  font-weight: bold;
+}
+
+.field {
+  label {
+    font-size: var(--font-size-xl);
+  }
 }

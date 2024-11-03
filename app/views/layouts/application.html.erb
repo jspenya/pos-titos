@@ -19,9 +19,9 @@
 
   <body>
     <%= render "shared/flash" %>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" if user_signed_in? %>
     <main>
-      <%= render "shared/sidebar" if user_signed_in? %>
+      <%= render "shared/icons" %>
       <div class="container mt-2">
         <div class="row">
           <div class="col-md-12">

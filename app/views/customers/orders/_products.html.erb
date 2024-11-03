@@ -1,25 +1,37 @@
-<div class="items-container">
-  <% products.each do |product| %>
-    <div class="unit item product-details">
-      <% if product.image.attached? %>
-        <div class="card-img-top placeholder__thumb">
-          <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
-        </div>
-      <% else %>
-        <div class="card-img-top placeholder__thumb">
-          <%= image_tag "placeholder.png" %>
-        </div>
-      <% end %>
-      <div class="card-body text-center">
-        <h5 class="card-title"><%= product.name %></h5>
-        <p class="card-text"><span></span><%= number_to_currency(product.price, unit: "₱") %></p>
-        <% unless @order.done? %>
-          <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
-            <%= form.hidden_field :product_id, value: product.id %>
-            <%= form.submit 'Add', class: 'btn btn-primary' %>
-          <% end %>
+<% if products.exists? %>
+  <div class="items-container">
+    <% products.each do |product| %>
+      <div class="unit item product-details">
+        <% if product.image.attached? %>
+          <div class="card-img-top placeholder__thumb">
+            <img src="<%= main_app.url_for(product.image.variant(:thumb)) %>" class="card-img-top" alt="<%= product.name %>">
+          </div>
+        <% else %>
+          <div class="card-img-top placeholder__thumb">
+            <%= image_tag "placeholder.png" %>
+          </div>
         <% end %>
+        <div class="card-body text-center">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text"><span></span><%= number_to_currency(product.price, unit: "₱") %></p>
+          <% unless @order.done? %>
+            <%= form_with(model: [@customer, @order, OrderItem.new], url: customer_order_order_items_path(@customer,@order), local: true) do |form| %>
+              <%= form.hidden_field :product_id, value: product.id %>
+              <%= form.submit 'Add', class: 'btn btn-primary' %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% else %>
+  <h3 class="text-center fw-bold">
+    You currently don't have any stocks.
+    <br>
+    <% if policy(Stock).index? %>
+      <small><%= link_to "Click here to add more stocks.", stocks_path, class: "mt-3" %></small>
+    <% else %>
+      <small>Contact your supervisor to add more.</small>
+    <% end %>
+  </h3>
+<% end %>

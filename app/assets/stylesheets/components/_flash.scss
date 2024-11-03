@@ -77,25 +77,25 @@
   padding: 1rem;
 
   &.notice-info {
-    background-color: #ebf8ff;
-    color: #2b6cb0;
+    background-color: var(--color-secondary);
+    color: var(--color-accent-light);
 
     svg {
-      color: #4299e1;
+      color: var(--color-accent-light);
     }
   }
 
   &.notice-success {
-    background-color: #def7ec;
-    color: #38a169;
+    background-color: var(--color-secondary);
+    color: var(--color-accent-light);
 
     svg {
-      color: #4bbf6b;
+      color: var(--color-accent-light);
     }
   }
 
   &.notice-error {
-    background-color: #fed7d7;
+    background-color: var(--color-secondary);
     color: #e53e3e;
 
     svg {
@@ -104,11 +104,11 @@
   }
 
   &.notice-warning {
-    background-color: #fff8db;
-    color: #d69e2e;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
 
     svg {
-      color: #ecc94b;
+      color: var(--color-primary);
     }
   }
 }

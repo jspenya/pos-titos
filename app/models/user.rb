@@ -37,4 +37,10 @@ class User < ApplicationRecord
     :cashier,
     :stockman,
   ]
+
+  def full_name formal: true
+    return [last_name, first_name].join(', ') if formal
+
+    [first_name, last_name].join(' ')
+  end
 end

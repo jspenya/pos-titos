@@ -1,17 +1,145 @@
-<div class="">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-    <span class="nav-link px-2 link-dark fw-bolder">
-    </span>
-
-    <div class="col-md-3 text-end">
-      <% if user_signed_in? %>
-        <%= button_to 'Log out', destroy_user_session_path, class: 'btn btn-outline-danger', style: 'margin-right:1rem;', method: :delete %>
-      <% else %>
-        <div class="d-flex gap-2">
-          <%= button_to 'Log in', new_user_session_path, class: 'btn btn-dark', method: :get%>
-          <%= button_to 'Sign up', new_user_registration_path, class: 'btn btn-light ml-3', method: :get %>
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <span class="navbar-text nav-item">
+        <%= link_to 'Home', root_path, class: "nav-link" %>
+      </span>
+      <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menu
+          </a>
+          <ul class="dropdown-menu">
+            <% if policy(Category).index? %>
+              <li>
+                <a href="<%= categories_path %>" class="nav-link p-3" title="Categories" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small><i class="fas fa-fw fa-box"></i></small>
+                  <span class="ms-2">Categories</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(Product).index? %>
+              <li>
+                <a href="<%= products_path %>" class="nav-link p-3" title="Products" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <svg class="bi" width="16" height="16" role="img" aria-label="Products">
+                      <use xlink:href="#grid" />
+                    </svg>
+                  </small>
+                  <span class="ms-2">Products</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(:customer_order).tables? %>
+              <li>
+                <a href="<%= customer_orders_tables_path %>" class="nav-link p-3" title="Table Orders" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <svg class="bi" width="16" height="16" role="img" aria-label="Table Orders">
+                      <use xlink:href="#table" />
+                    </svg>
+                  </small>
+                  <span class="ms-2">Tables</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(:customer_order).individual_orders? %>
+              <li>
+                <a href="<%= customer_orders_individual_orders_path %>" class="nav-link p-3" title="Customer Orders" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <svg class="bi" width="16" height="16" role="img" aria-label="Customer Orders">
+                      <use xlink:href="#people-circle" />
+                    </svg>
+                  </small>
+                  <span class="ms-2">Customer Orders</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(Stock).index? %>
+              <li>
+                <a href="<%= stocks_path %>" class="nav-link p-3" title="Stocks" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <svg class="bi" width="16" height="16" role="img" aria-label="Stocks">
+                      <use xlink:href="#collection" />
+                    </svg>
+                  </small>
+                  <span class="ms-2">Stocks</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(Stock).index? %>
+              <li>
+                <a href="<%= stock_versions_path %>" class="nav-link p-3" title="Stocks" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <svg class="bi" width="16" height="16" role="img" aria-label="Stocks">
+                      <use xlink:href="#cpu-fill" />
+                    </svg>
+                  </small>
+                  <span class="ms-2">Stock Logs</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(:chart).index? %>
+              <li>
+                <a href="<%= charts_path %>" class="nav-link p-3" title="Charts" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <i class="fas fa-fw fa-chart-area"></i>
+                  </small>
+                  <span class="ms-2">Charts</span>
+                </a>
+              </li>
+            <% end %>
+            <% if policy(:chart).index? %>
+              <li>
+                <a href="<%= sales_path %>" class="nav-link p-3" title="Sales" data-bs-toggle="tooltip"
+                  data-bs-placement="right">
+                  <small>
+                    <i class="fas fa-fw fa-money-bill"></i>
+                  </small>
+                  <span class="ms-2">Sales</span>
+                </a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <span class="navbar-text nav-item dropdown">
+        <div>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li class="py-1">
+              <div class="dropdown-item border-bottom">
+                <small>Logged in as:</small>
+                <p><%= current_user.full_name %></p>
+              </div>
+            </li>
+            <li class="py-1">
+              <% if user_signed_in? %>
+                <%= button_to 'Log out', destroy_user_session_path, class: 'dropdown-item', style: 'margin-right:1rem;', method: :delete %>
+              <% else %>
+                <div class="d-flex gap-2">
+                  <%= button_to 'Log in', new_user_session_path, class: 'dropdown-item', method: :get%>
+                  <%= button_to 'Sign up', new_user_registration_path, class: 'dropdown-item', method: :get %>
+                </div>
+              <% end %>
+            </li>
+          </ul>
         </div>
-      <% end %>
+      </span>
     </div>
-  </header>
-</div>
+  </div>
+</nav>

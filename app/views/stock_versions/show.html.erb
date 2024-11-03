@@ -37,8 +37,12 @@
             <%= version.created_at.strftime('%l:%M %p on %a %b %-d, %Y') %>
           </b>
         </h6>
-        <dt>Quantity: <%= version.object&.dig("quantity") %></dt>
-        <dd>Actor: <%= whodunnit_user(version.whodunnit)&.email %></dd>
+        <% if quantity = version.object&.dig("quantity") %>
+          <dt>Quantity: <%= quantity %></dt>
+        <% end %>
+        <% if version.whodunnit %>
+          <dd>Actor: <%= whodunnit_user(version.whodunnit)&.email %></dd>
+        <% end %>
       </div>
     </div>
   <% end %>
