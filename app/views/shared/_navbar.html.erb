@@ -44,12 +44,12 @@
                       <use xlink:href="#table" />
                     </svg>
                   </small>
-                  <span class="ms-2">Tables</span>
+                  <span class="ms-2">Table Orders</span>
                 </a>
               </li>
             <% end %>
             <% if policy(:customer_order).individual_orders? %>
-              <li>
+              <li class="nowrap">
                 <a href="<%= customer_orders_individual_orders_path %>" class="nav-link p-3" title="Customer Orders" data-bs-toggle="tooltip"
                   data-bs-placement="right">
                   <small>
